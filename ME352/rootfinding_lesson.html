@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Root finding &#8212; ME 352 Labs book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'rootfinding_lesson';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="More equation solving examples" href="MoreEquationSolving.html" />
+    <link rel="prev" title="Taylor Polynomial Expansions" href="taylor_expansion_log.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    ME 352 Labs Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lessons</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lesson2_fcns_vars.html">Lesson 2: Functions and Variables</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="program_control.html">Program control: if/else and loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taylor_expansion_log.html">Taylor Polynomial Expansions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Root finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MoreEquationSolving.html">More equation solving examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InterpolationLesson.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RegressionLesson.html">Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogscaleRegressionLesson.html">Logscale and nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NonlinearRegrssionLesson_wcode.html">Nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_intro.html">Linear Algebra basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_eqns_eigenvals.html">Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_integration.html">Numerical Integration basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_differentiation.html">Numerical differentiation basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_intro.html">Introduction to ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems.html">Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems-Rossler_Lorenz.html">Rossler and Lorenz systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_FD.html">Introduction to BVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_shootingmethod.html">BVPs - shooting methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lab1.html">Lab 1. First Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab2.html">Lab 2. Python Basics Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab3.html">Lab 3. Numpy arrays and plotting Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab4.html">Lab 4. Root Finding Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab5.html">Lab 5. Interpolation Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab6.html">Lab 6. Regression Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab7.html">Lab 7. Nonlinear Regression Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab8.html">Lab 8. Linear Algebra Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab9.html">Lab 9. Numerical Integration Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab10.html">Lab 10. IVP Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab11.html">Lab 11. Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab12.html">Lab 12. BVP example</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2Frootfinding_lesson.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/rootfinding_lesson.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Root finding</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fsolve">fsolve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakes">Lakes</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="root-finding">
+<h1>Root finding<a class="headerlink" href="#root-finding" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">newton_method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">fp</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>   <span class="c1">#fill in your newton method here</span>
+    <span class="c1">#newtons method with x0 initial guess</span>
+    <span class="c1">#inputs: f -- function</span>
+    <span class="c1">#        fp -- derivative of f</span>
+    <span class="c1">#        x0 -- initial guess</span>
+    <span class="c1">#         maxiter -- max iterations</span>
+    <span class="c1">#       tol --- tolerance</span>
+    
+    <span class="n">numit</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">#keep track of iterations</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">tol</span> <span class="o">+</span> <span class="mf">1.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">numit</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">):</span>
+        <span class="n">xnew</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">fp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">numit</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">xnew</span> <span class="o">-</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">xnew</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">numit</span> <span class="c1">#return something</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#test case 1 -- find square root of three</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">3.</span>
+<span class="k">def</span> <span class="nf">funcp</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">2.</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">root</span><span class="p">,</span><span class="n">nits</span> <span class="o">=</span> <span class="n">newton_method</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">funcp</span><span class="p">,</span><span class="o">-</span><span class="mf">.1</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mf">1.e-10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found root= </span><span class="si">{:1.8e}</span><span class="s1"> in </span><span class="si">{:d}</span><span class="s1"> iterations&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">nits</span><span class="p">))</span>
+<span class="c1">#print(np.sqrt(3))</span>
+<span class="c1">#print(np.sqrt(3) - root)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15.05
+-7.624667774086379
+-4.009063770159931
+-2.3786840777102567
+-1.8199428042345787
+-1.7341731278582593
+-1.7320521062406589
+-1.7320508075693641
+-1.7320508075688772
+Found root= -1.73205081e+00 in 9 iterations
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#test case 2 -- solve cos x = x</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
+<span class="k">def</span> <span class="nf">funcp</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">1.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1.</span>
+
+<span class="n">root</span><span class="p">,</span><span class="n">nits</span> <span class="o">=</span> <span class="n">newton_method</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">funcp</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mf">1.e-8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found root= </span><span class="si">{:1.8e}</span><span class="s1"> in </span><span class="si">{:d}</span><span class="s1"> iterations&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">nits</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7503638678402439
+0.7391128909113617
+0.739085133385284
+0.7390851332151607
+Found root= 7.39085133e-01 in 4 iterations
+</pre></div>
+</div>
+</div>
+</div>
+<section id="example">
+<h2>example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>Solve <span class="math notranslate nohighlight">\(\frac{1}{2} + \frac{1}{4}x^2 - x\sin(x) = \frac{1}{2}\cos(2x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">gp</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
+<span class="n">root</span><span class="p">,</span><span class="n">nits</span> <span class="o">=</span> <span class="n">newton_method</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">gp</span><span class="p">,</span><span class="mf">1.9</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mf">1.e-8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found root= </span><span class="si">{:1.8e}</span><span class="s1"> in </span><span class="si">{:d}</span><span class="s1"> iterations&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">nits</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8977529702418763
+1.8966250899372334
+1.8960600478436749
+1.8957772499712897
+1.895635781660446
+1.8955650301404994
+1.8955296500357208
+1.8955119588974152
+1.8955031130619369
+1.8954986900846493
+1.895496478588018
+1.8954953728077126
+1.8954948197932437
+1.8954945432780543
+1.8954944047278717
+1.8954943362139827
+1.895494302121959
+1.895494287971145
+1.895494276113678
+1.8954942624424211
+1.8954942894769975
+1.8954942728841924
+1.8954942728841924
+Found root= 1.89549427e+00 in 23 iterations
+0.0
+</pre></div>
+</div>
+<img alt="_images/e563b708dc2f196614c34dcd63224595bc3939cc3dd9594217368d99a164078a.png" src="_images/e563b708dc2f196614c34dcd63224595bc3939cc3dd9594217368d99a164078a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">7</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">hp</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">12</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
+<span class="n">root</span><span class="p">,</span><span class="n">nits</span> <span class="o">=</span> <span class="n">newton_method</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">hp</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mf">1.e-8</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found root= </span><span class="si">{:1.8e}</span><span class="s1"> in </span><span class="si">{:d}</span><span class="s1"> iterations&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">nits</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.3324675324675326
+1.9842561832558543
+2.0000015611860515
+2.0
+2.0
+Found root= 2.00000000e+00 in 5 iterations
+</pre></div>
+</div>
+<img alt="_images/8fac944d3a4ca46adeddb8a2009a6b5c8f6eaa28946b9818a6b49433d6013351.png" src="_images/8fac944d3a4ca46adeddb8a2009a6b5c8f6eaa28946b9818a6b49433d6013351.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">secant_method</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">tol</span><span class="o">=</span><span class="mf">1.e-16</span><span class="p">,</span><span class="n">maxit</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1">#secant method with x0, x1 initial guesses</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">x1</span><span class="o">-</span><span class="n">x0</span>
+    <span class="n">numit</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+    <span class="c1">#print(x) #uncomment print statements if you want to see iterations</span>
+
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="n">numit</span> <span class="o">&lt;</span> <span class="n">maxit</span><span class="p">:</span>
+        <span class="n">xn</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">xn</span> <span class="o">-</span> <span class="n">x1</span>
+        <span class="n">x1</span><span class="p">,</span><span class="n">x0</span> <span class="o">=</span> <span class="n">xn</span><span class="p">,</span><span class="n">x1</span>
+        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+        <span class="n">numit</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1">#print(x)   #uncomment print statements if you want to see iterations</span>
+    <span class="k">return</span> <span class="n">xn</span><span class="p">,</span><span class="n">numit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fsolve">
+<h2>fsolve<a class="headerlink" href="#fsolve" title="Permalink to this headline">#</a></h2>
+<p>fsolve is the command we use in general to solve equations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#look at fsolve doc and solve an example or two from above</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+
+<span class="c1">#test case 2 -- solve cos x = x</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7390851332151607
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lakes">
+<h2>Lakes<a class="headerlink" href="#lakes" title="Permalink to this headline">#</a></h2>
+<p>If you visit a lot of lakes of different sizes in different parts of the world, you will see that there are two common physical states. Some lakes are relatively clean and fresh-smelling— these are called oligotrophic. In contrast, eutrophic lakes are overgrown with algae and have a rank smell. Eutrophic lakes have a phosphorus content that is many times higher than that of oligotrophic lakes. Biologists have long known that there does not appear to be a gradation of intermediate states; indeed, rapid eutrophication of formerly oligotrophic lakes is an environmental problem that can be caused by runoff of fertilizer from farms. Why there are no intermediate states, how eutrophication occurs, and the possibility of restoring a eutrophic lake are all questions that can be explored with a simple mathematical model due to a 1999 paper by Carpenter et al.</p>
+<p><span class="math notranslate nohighlight">\(\frac{dp}{dt} = b - p + r\frac{p^q}{1 + p^q}\)</span>.</p>
+<p>This nondimensionalized model incorporates three mechanisms for change in phosphorus content in a lake on the LHS of the DE. The first term,
+b
+represents the influx of phosphorus from the environment; this can include artificial sources such as farm runoff as well as natural sources such as decomposition of plants. The standard use of phosphates in laundry and dishwashing detergents was linked to lake eutrophication in the late 1960s and spawned one of the early conflicts between the environmental movement and industry. Phosphates are still used in some detergents, but smaller amounts and better treatment of wastewater have significantly reduced their contribution to eutrophication. The second term represents the combined processes of sedimentation, outflow, and absorption by plants, all of which remove phosphorus from the water. The last term represents the recycling of phosphorus from sediments. This term plays a significant role in the physical system, because the large values typical of <span class="math notranslate nohighlight">\(q\)</span> (from 2 for a cold deep lake to as much as 20 for a warm shallow lake) mean that the recycling rate is roughly
+<span class="math notranslate nohighlight">\(r\)</span> when <span class="math notranslate nohighlight">\(p&gt;1\)</span> and very small when <span class="math notranslate nohighlight">\( p&lt;1\)</span>. Thus, eutrophic lakes, which are high in phosphorus, have large recycling rates that keep the phosphorus concentration high; oligotrophic lakes, in contrast, have very little recycling of sedimentary phosphorus.</p>
+<p>Let <span class="math notranslate nohighlight">\(b = 0.25, r=5\)</span>, and <span class="math notranslate nohighlight">\(q=8\)</span>. Find the equilibrium solutions to this DE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rhs</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
+    <span class="c1">#b = 0.25</span>
+    <span class="c1">#r = 5.</span>
+    <span class="c1">#q = 8.</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">.25</span><span class="p">,</span><span class="mf">5.</span><span class="p">,</span><span class="mf">8.</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.25007648]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">6.</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">rhs</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">6.</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">rhs</span><span class="p">(</span><span class="n">ps</span><span class="p">),</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="mi">0</span><span class="o">*</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: rhs() missing 3 required positional arguments: &#39;b&#39;, &#39;r&#39;, and &#39;q&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="taylor_expansion_log.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Taylor Polynomial Expansions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="MoreEquationSolving.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">More equation solving examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fsolve">fsolve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakes">Lakes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

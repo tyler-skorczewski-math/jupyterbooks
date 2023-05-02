@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>BVPs - shooting methods &#8212; ME 352 Labs book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'BVPs_shootingmethod';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 1. First Jupyter notebook" href="Lab1.html" />
+    <link rel="prev" title="Introduction to BVPs" href="BVPs_FD.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    ME 352 Labs Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lessons</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lesson2_fcns_vars.html">Lesson 2: Functions and Variables</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="program_control.html">Program control: if/else and loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taylor_expansion_log.html">Taylor Polynomial Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rootfinding_lesson.html">Root finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MoreEquationSolving.html">More equation solving examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InterpolationLesson.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RegressionLesson.html">Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogscaleRegressionLesson.html">Logscale and nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NonlinearRegrssionLesson_wcode.html">Nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_intro.html">Linear Algebra basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_eqns_eigenvals.html">Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_integration.html">Numerical Integration basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_differentiation.html">Numerical differentiation basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_intro.html">Introduction to ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems.html">Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems-Rossler_Lorenz.html">Rossler and Lorenz systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_FD.html">Introduction to BVPs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">BVPs - shooting methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lab1.html">Lab 1. First Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab2.html">Lab 2. Python Basics Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab3.html">Lab 3. Numpy arrays and plotting Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab4.html">Lab 4. Root Finding Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab5.html">Lab 5. Interpolation Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab6.html">Lab 6. Regression Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab7.html">Lab 7. Nonlinear Regression Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab8.html">Lab 8. Linear Algebra Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab9.html">Lab 9. Numerical Integration Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab10.html">Lab 10. IVP Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab11.html">Lab 11. Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab12.html">Lab 12. BVP example</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2FBVPs_shootingmethod.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/BVPs_shootingmethod.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BVPs - shooting methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shooting-method-approach-to-above-problem">Shooting method approach to above problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mortar-example">Mortar example</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bvps-shooting-methods">
+<h1>BVPs - shooting methods<a class="headerlink" href="#bvps-shooting-methods" title="Permalink to this headline">#</a></h1>
+<p>The goal of this lesson is to introduce/reintroduce some ideas about differential equations and boundary value problems and some python routines that can be used to analyze models with BVPs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="example-1">
+<h2>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">#</a></h2>
+<p>Consider the boundary value problem
+$<span class="math notranslate nohighlight">\(-u'' + \pi^2 u = 2\pi^2 \sin(\pi x), u(0)=u(1)=0.\)</span>$</p>
+<p>Since we have boundary conditions that specify the value of <span class="math notranslate nohighlight">\(u\)</span> at the boundaries, we say they are Dirichlet boundary conditions. Note from the BVP theory we spoke about before Spring Break, this system has a unique solution.</p>
+<p>We can solve this problem numerically by discretizing the space between <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span> and using numerical approximations of <span class="math notranslate nohighlight">\(u''\)</span> at each point.
+Let’s break up space into <span class="math notranslate nohighlight">\(n\)</span> segments so <span class="math notranslate nohighlight">\(x_0 = 0\)</span>, <span class="math notranslate nohighlight">\(x_n = 1\)</span>, and <span class="math notranslate nohighlight">\(x_i = 0 + hi\)</span>.</p>
+<p>Then at an interior point <span class="math notranslate nohighlight">\(x_i\)</span> (not 0 or <span class="math notranslate nohighlight">\(n\)</span>) we have that <span class="math notranslate nohighlight">\(u_i'' = \frac{u_{i-1} -2 u_i + u_{i+1}}{h^2} + \mathcal{O}(h^2)\)</span>.</p>
+<p>If we drop the error term in the derivative approximation, we can write our DE with the boundary conditions as the discrete system below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+u_0 &amp; = 0 \\
+\frac{-u_{i-1} +2 u_i - u_{i+1}}{h^2} + \pi^2 u_i &amp;= 2 \pi^2 \sin(\pi x_i) \\
+u_n &amp; = 0\end{align} \end{split}\]</div>
+<p>The equations associated with interior points can be rewritten as
+$<span class="math notranslate nohighlight">\(-u_{i-1} + (2+h^2\pi^2) u_i - u_{i+1} = 2 h^2\pi^2 \sin(\pi x_i).\)</span>$</p>
+<p>Then if we let <span class="math notranslate nohighlight">\(\vec{u} = \begin{bmatrix}u_0 \\ u_1 \\ ... \\ u_i \\ ... \\ u_n\end{bmatrix}\)</span>, we can write this system in matrix vector form <span class="math notranslate nohighlight">\(A\vec{u} = \vec{b}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{bmatrix}1 &amp; 0 &amp; &amp; &amp; &amp; &amp; \\-1 &amp; (2+h^2\pi^2) &amp; -1 &amp; &amp; &amp; &amp; \\ 0 &amp; -1 &amp; (2+h^2\pi^2) &amp; -1 &amp; &amp; &amp; \\  &amp;  .  &amp; . &amp; . &amp; &amp; &amp; \\ &amp; &amp; &amp; &amp;-1 &amp; (2+h^2\pi^2) &amp; -1 \\ &amp; &amp; &amp; &amp; &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix}u_0 \\ u_1 \\ ... \\ u_i \\ ... \\ u_n\end{bmatrix} = \begin{bmatrix}0 \\ 2 h^2\pi^2 \sin(\pi x_1) \\ ... \\ 2 h^2\pi^2 \sin(\pi x_i) \\ ... \\ 0 \end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#number of segments</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#n+1 equally spaced points between 0 and 1</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="mf">0.</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1">#step size</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#zero matrix with shape n+1 by n+1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#RHS vector</span>
+
+<span class="c1">#Boundary Conditions</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>  <span class="c1">#update first row</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>  <span class="c1">#update last row</span>
+<span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="c1">#interior points</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">+</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
+    <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="c1">#compare with exact</span>
+<span class="n">uexact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">uexact</span> <span class="o">-</span> <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">errors</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="s1">&#39;go&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">uexact</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.00000000e+00 1.27182109e-03 2.41914747e-03 3.32967084e-03
+  3.91426283e-03 4.11569950e-03 3.91426283e-03 3.32967084e-03
+  2.41914747e-03 1.27182109e-03 1.22464680e-16]]
+0.004115699496889835
+</pre></div>
+</div>
+<img alt="_images/0dd86df664bb8e5cba2758c91cdef2ba2a90e95c6188604238f1441043ee74a0.png" src="_images/0dd86df664bb8e5cba2758c91cdef2ba2a90e95c6188604238f1441043ee74a0.png" />
+</div>
+</div>
+</section>
+<section id="shooting-method-approach-to-above-problem">
+<h2>Shooting method approach to above problem<a class="headerlink" href="#shooting-method-approach-to-above-problem" title="Permalink to this headline">#</a></h2>
+<p>The finite difference approach to the above problem isn’t the only way to solve it. We can also use a shooting approach where we replace the BVP with an IVP involving an unknown parameter. We then ‘tune’ that parameter using the second boundary condition.</p>
+<p>Replace the BVP</p>
+<div class="math notranslate nohighlight">
+\[-u'' + \pi^2 u = 2\pi^2 \sin(\pi x), u(0)=u(1)=0\]</div>
+<p>with the IVP</p>
+<div class="math notranslate nohighlight">
+\[-u'' + \pi^2 u = 2\pi^2 \sin(\pi x), u(0)=0, u'(0)=\alpha.\]</div>
+<p>Now we need to find the right value of <span class="math notranslate nohighlight">\(\alpha\)</span> so that <span class="math notranslate nohighlight">\(u(1)=0\)</span>. We can use equation solving routines to help us with that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sysde</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">vec</span><span class="p">):</span>
+    <span class="n">u</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dudx</span> <span class="o">=</span> <span class="n">z</span>
+    <span class="n">dzdx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span> <span class="o">-</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">([</span><span class="n">dudx</span><span class="p">,</span><span class="n">dzdx</span><span class="p">])</span>
+
+<span class="c1">#need a function that takes in alpha and returns u(1)</span>
+<span class="k">def</span> <span class="nf">getuone</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">sysde</span><span class="p">,[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="n">alpha</span><span class="p">],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">uone</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">uone</span><span class="p">)</span>  
+
+<span class="c1">#use fsolve to find a root</span>
+<span class="n">alpha_opt</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">getuone</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span>
+
+<span class="c1">#now solve ivp again using correct alpha</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">sysde</span><span class="p">,[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="n">alpha_opt</span><span class="p">],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">us</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">xs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">uexact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">us</span><span class="p">,</span><span class="s1">&#39;b.-&#39;</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">uexact</span><span class="p">,</span><span class="s1">&#39;r:&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\skorczewskit\Anaconda3\lib\site-packages\scipy\integrate\_ivp\base.py:6: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  y0 = np.asarray(y0)
+C:\Users\skorczewskit\Anaconda3\lib\site-packages\numpy\core\shape_base.py:121: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  ary = asanyarray(ary)
+</pre></div>
+</div>
+<img alt="_images/d74ec91bd9af85672a68f231bad6e1218ed866669828aa41cbde8eccbd5b8170.png" src="_images/d74ec91bd9af85672a68f231bad6e1218ed866669828aa41cbde8eccbd5b8170.png" />
+</div>
+</div>
+<section id="mortar-example">
+<h3>Mortar example<a class="headerlink" href="#mortar-example" title="Permalink to this headline">#</a></h3>
+<p>From Newton’s Second Law we have the following system of equations that describe the motion of a mortar shell under the influence of gravity and air resistance:
+$<span class="math notranslate nohighlight">\(\begin{bmatrix}x''\\y''\end{bmatrix} = \begin{bmatrix}0\\-g\end{bmatrix} - \alpha \sqrt{x'^2 + y'^2} \begin{bmatrix}x'\\y'\end{bmatrix}.\)</span>$</p>
+<p>We can rewrite these two coupled second order differential equations as a coupled system of four first order equations:
+$<span class="math notranslate nohighlight">\(\begin{bmatrix}x'\\y'\\xv'\\yv'\end{bmatrix} = \begin{bmatrix}xv\\yv\\-\alpha \sqrt{xv^2 + yv^2} xv \\-g -\alpha \sqrt{xv^2 + yv^2} yv\end{bmatrix},\)</span><span class="math notranslate nohighlight">\(
+where \)</span>xv,yv<span class="math notranslate nohighlight">\( represent the velocities in the \)</span>x,y$ directions, respectively.</p>
+<p>Here we let <span class="math notranslate nohighlight">\(\alpha = 0.001\)</span> be a coefficient for drag that accounts for air denisty, shape, and mass. If we further assume the mortar launches at 100 m/s, the initial conditions that complete the initial value problem are
+$<span class="math notranslate nohighlight">\(\begin{bmatrix}x\\y\\xv\\yv\end{bmatrix}(0) = \begin{bmatrix}0\\0\\100\cos(\theta)\\100\sin(\theta)\end{bmatrix}.\)</span><span class="math notranslate nohighlight">\(
+Our task is to find the launch angle, \)</span>\theta$, that allows us to hit a target 500 meters away.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#mortar example</span>
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.8</span>
+    <span class="c1">#y[0] = x</span>
+    <span class="c1">#y[1] = y</span>
+    <span class="c1">#y[2] = x&#39;</span>
+    <span class="c1">#y[3] = y&#39;</span>
+    <span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">xv</span><span class="p">,</span> <span class="n">yv</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dydt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">xv</span><span class="p">,</span> <span class="n">yv</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.001</span><span class="o">*</span><span class="n">xv</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xv</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">yv</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">g</span> <span class="o">-</span> <span class="mf">0.001</span><span class="o">*</span><span class="n">yv</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xv</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">yv</span><span class="o">**</span><span class="mi">2</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">dydt</span>
+
+<span class="c1">#init conditions v=100 mph  theta=25 degrees</span>
+<span class="k">def</span> <span class="nf">gety500</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>  <span class="c1">#function that takes in theta and returns y when x=142 m</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">model</span><span class="p">,[</span><span class="mf">0.</span><span class="p">,</span><span class="mi">20</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="mf">100.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">600</span><span class="p">)</span>
+    <span class="n">tstar</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># get time when x = 500</span>
+    <span class="n">y500</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">tstar</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#y value when x = 500</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">y500</span><span class="o">+</span><span class="mi">25</span><span class="p">)</span>
+
+<span class="n">theta_opt</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">gety500</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span> <span class="c1">#solve for optimal theta to hit target</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">model</span><span class="p">,[</span><span class="mf">0.</span><span class="p">,</span><span class="mi">20</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_opt</span><span class="p">),</span><span class="mf">100.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_opt</span><span class="p">)],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">ts</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">ts</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span><span class="mf">1.1</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">));</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">theta_opt</span><span class="o">*</span><span class="mf">180.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+
+
+
+
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[48.19053225]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\skorczewskit\Anaconda3\lib\site-packages\scipy\integrate\_ivp\base.py:6: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  y0 = np.asarray(y0)
+C:\Users\skorczewskit\Anaconda3\lib\site-packages\numpy\core\shape_base.py:121: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+  ary = asanyarray(ary)
+</pre></div>
+</div>
+<img alt="_images/5b7c02c401c812146527a9804cf6a653277aeb5bea66fca54a1c7daf7441391d.png" src="_images/5b7c02c401c812146527a9804cf6a653277aeb5bea66fca54a1c7daf7441391d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">3.</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">model</span><span class="p">,[</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="mf">100.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">ts</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">model</span><span class="p">,[</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="p">],[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="mf">100.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">ts</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x15a1a2f36a0&gt;]
+</pre></div>
+</div>
+<img alt="_images/42816d26c6de8a51f47b949f5d6af6696d1ca61b245faac13e47ee287a61b6b6.png" src="_images/42816d26c6de8a51f47b949f5d6af6696d1ca61b245faac13e47ee287a61b6b6.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="BVPs_FD.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to BVPs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Lab1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 1. First Jupyter notebook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shooting-method-approach-to-above-problem">Shooting method approach to above problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mortar-example">Mortar example</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

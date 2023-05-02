@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to ODEs &#8212; ME 352 Labs book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ODEs_intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Systems of ODEs" href="ODEs_systems.html" />
+    <link rel="prev" title="Numerical differentiation basics with python" href="Numerical_differentiation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    ME 352 Labs Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lessons</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lesson2_fcns_vars.html">Lesson 2: Functions and Variables</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="program_control.html">Program control: if/else and loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taylor_expansion_log.html">Taylor Polynomial Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rootfinding_lesson.html">Root finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MoreEquationSolving.html">More equation solving examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InterpolationLesson.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RegressionLesson.html">Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogscaleRegressionLesson.html">Logscale and nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NonlinearRegrssionLesson_wcode.html">Nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_intro.html">Linear Algebra basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_eqns_eigenvals.html">Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_integration.html">Numerical Integration basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_differentiation.html">Numerical differentiation basics with python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems.html">Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems-Rossler_Lorenz.html">Rossler and Lorenz systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_FD.html">Introduction to BVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_shootingmethod.html">BVPs - shooting methods</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Lab1.html">Lab 1. First Jupyter notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab2.html">Lab 2. Python Basics Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab3.html">Lab 3. Numpy arrays and plotting Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab4.html">Lab 4. Root Finding Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab5.html">Lab 5. Interpolation Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab6.html">Lab 6. Regression Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab7.html">Lab 7. Nonlinear Regression Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab8.html">Lab 8. Linear Algebra Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab9.html">Lab 9. Numerical Integration Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab10.html">Lab 10. IVP Lab/HW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab11.html">Lab 11. Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Lab12.html">Lab 12. BVP example</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2FODEs_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ODEs_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to ODEs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saltwater">Saltwater</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lake-eutrophication">Lake Eutrophication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-connections">Making Connections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta">Runge-Kutta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-routines-and-what-they-are-trying-to-do">Built in routines and what they are trying to do</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-odes">
+<h1>Introduction to ODEs<a class="headerlink" href="#introduction-to-odes" title="Permalink to this headline">#</a></h1>
+<p>The goal of this lesson is to introduce/reintroduce some ideas about differential equations and initial value problems and some python routines that can be used to analyze models with ODEs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="saltwater">
+<h2>Saltwater<a class="headerlink" href="#saltwater" title="Permalink to this headline">#</a></h2>
+<p>Consider a 50 gallon tank of pure water. Saltwater with concentration 2 lbs/gal is pumped in at a rate of 3 gal/min, is continuously mixed, and flows out at 3 gal/min.</p>
+<ul class="simple">
+<li><p>Set up an IVP describing this situation.</p></li>
+<li><p>Describe the DE using vocabulary you learned in Math 250.</p></li>
+<li><p>Solve this system. Is there a particular method that is aimed at this type of problem?</p></li>
+</ul>
+<p>Think about the system above. We don’t always need to solve every ODE or IVP analytically. In fact, we often can’t do this! Thus, having some numerical methods at our disposal is important. The first numerical method for IVPs is Euler’s method. If we understand this method well, we can see what other methods are trying to do without having to analyze them using a level of rigor that takes more math.</p>
+<p>Euler’s method to solve the IVP <span class="math notranslate nohighlight">\(\frac{dy}{dx} = f(x,y), y(x_0)=x_0\)</span> is given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+x_{n+1} &amp;= x_n + h\\
+y_{n+1} &amp;= y_n + hf(x_n,y_n)\\
+x_0 &amp;= x_0, y_0 = y(x_0).
+\end{align*}\]</div>
+<ul class="simple">
+<li><p>Implement this method below for the IVP above.</p></li>
+<li><p>Plot the numerical approximation and the exact solution on one figure.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)):</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mf">6.</span><span class="o">-</span><span class="p">(</span><span class="mf">3.</span><span class="o">/</span><span class="mf">50.</span><span class="p">)</span><span class="o">*</span><span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    
+<span class="n">xexact</span> <span class="o">=</span> <span class="mf">100.</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">3.</span><span class="o">*</span><span class="n">ts</span><span class="o">/</span><span class="mf">50.</span><span class="p">))</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="n">xexact</span><span class="p">,</span><span class="s1">&#39;b:&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time [min]&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;salt [lbs]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2c3175cf89415070c154e461041ecee0b2aceaff4855e73ba79f69ae202d1b01.png" src="_images/2c3175cf89415070c154e461041ecee0b2aceaff4855e73ba79f69ae202d1b01.png" />
+</div>
+</div>
+</section>
+<section id="lake-eutrophication">
+<h2>Lake Eutrophication<a class="headerlink" href="#lake-eutrophication" title="Permalink to this headline">#</a></h2>
+<p>If you visit a lot of lakes of different sizes in different parts of the world, you will see that there are two common physical states. Some lakes are relatively clean and fresh-smelling— these are called oligotrophic. In contrast, eutrophic lakes are overgrown with algae and have a rank smell. Eutrophic lakes have a phosphorus content that is many times higher than that of oligotrophic lakes. Biologists have long known that there does not appear to be a gradation of intermediate states; indeed, rapid eutrophication of formerly oligotrophic lakes is an environmental problem that can be caused by runoff of fertilizer from farms. Why there are no intermediate states, how eutrophication occurs, and the possibility of restoring a eutrophic lake are all questions that can be explored with a simple mathematical model due to a 1999 paper by Carpenter et al.
+$<span class="math notranslate nohighlight">\(\frac{dp}{dt} = b - p + r\frac{p^q}{1 + p^q}\)</span><span class="math notranslate nohighlight">\(
+This nondimensionalized model incorporates three mechanisms for change in phosphorus content in a lake on the LHS of the DE. The first term, \)</span>b<span class="math notranslate nohighlight">\(, represents the influx of phosphorus from the environment; this can include artificial sources such as farm runoff as well as natural sources such as decomposition of plants. The standard use of phosphates in laundry and dishwashing detergents was linked to lake eutrophication in the late 1960s and spawned one of the early conflicts between the environmental movement and industry. Phosphates are still used in some detergents, but smaller amounts and better treatment of wastewater have significantly reduced their contribution to eutrophication. The second term represents the combined processes of sedimentation, outflow, and absorption by plants, all of which remove phosphorus from the water. The last term represents the recycling of phosphorus from sediments. This term plays a significant role in the physical system, because the large values typical of \)</span>q<span class="math notranslate nohighlight">\( (from 2 for a cold deep lake to as much as 20 for a warm shallow lake) mean that the recycling rate is roughly \)</span>r<span class="math notranslate nohighlight">\( when \)</span>p&gt;1<span class="math notranslate nohighlight">\( and very small when \)</span>p&lt;1$. Thus, eutrophic lakes, which are high in phosphorus, have large recycling rates that keep the phosphorus concentration high; oligotrophic lakes, in contrast, have very little recycling of sedimentary phosphorus.</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(b=0.25\)</span>, <span class="math notranslate nohighlight">\(q=8, r=5\)</span>.</p></li>
+<li><p>Graph <span class="math notranslate nohighlight">\(\frac{dp}{dt}\)</span> vs <span class="math notranslate nohighlight">\(p\)</span>.</p></li>
+<li><p>Using some numerical tool, calculate any equilibrium solutions. You can use the fsolve command from the scipy library.</p></li>
+<li><p>What if <span class="math notranslate nohighlight">\(b=1\)</span>? What changes above? What does <span class="math notranslate nohighlight">\(b\)</span> do to the graph?</p></li>
+<li><p>What are equilibrium solutions associated with in the graphs? Which equilibrium solutions do you think are stable and unstable?</p></li>
+<li><p>Interpret each of the two pictures in the context of the problem described above. Write a short paragraph in your notes includes rough sketches of your figures that describes how the value of <span class="math notranslate nohighlight">\(b\)</span> affects the dynamics of this system.</p></li>
+<li><p>Use the Euler’s method to generate some numerical solution curves.</p></li>
+<li><p>If you are interested in this problem UW Stout has a LAKES REU related to this problem. These equations come from this paper studying Lake Mendota in Madison.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">8.</span>
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">dps</span> <span class="o">=</span> <span class="n">dpdt</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">dps</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">dpdt</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">dpdt</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">dpdt</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.25007648]
+[0.7624365]
+[5.24999134]
+</pre></div>
+</div>
+<img alt="_images/ddf808eadfb3e23fcb1969d115cba8ff28a315a33e1a1b82e316034cba4ad197.png" src="_images/ddf808eadfb3e23fcb1969d115cba8ff28a315a33e1a1b82e316034cba4ad197.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phosphorus&#39;</span><span class="p">);</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">);</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.85</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.85</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f7709e20b224c75d2e0b620eedbb8e77979077d8831910338229f951d39b50bd.png" src="_images/f7709e20b224c75d2e0b620eedbb8e77979077d8831910338229f951d39b50bd.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">=</span> <span class="mf">1.</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Phosphorus&#39;</span><span class="p">);</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;m&#39;</span><span class="p">);</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.85</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.85</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0a9af57f1e9ce5b76188cda030dbb4eb3a2835fe68003ebabe6d77ce160405b1.png" src="_images/0a9af57f1e9ce5b76188cda030dbb4eb3a2835fe68003ebabe6d77ce160405b1.png" />
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
+<p>Consider the IVP <span class="math notranslate nohighlight">\(\frac{dy}{dx} = e^{x-y}, y(0)=0\)</span>.</p>
+<ul class="simple">
+<li><p>What is the exact solution?</p></li>
+<li><p>Use Euler’s method to calculate the approximate solution for <span class="math notranslate nohighlight">\(0 \leq x \leq 1\)</span> with <span class="math notranslate nohighlight">\(h=0.1\)</span>.</p></li>
+<li><p>Calculate the error between the method and the exact solution.</p></li>
+<li><p>Can you explain the behavior you see?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">ys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ys</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;b^&#39;</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="s1">&#39;r:&#39;</span><span class="p">);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ] [0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ]
+</pre></div>
+</div>
+<img alt="_images/d298a915994c3ae5efdcda0f4475288b0018d706f443b202fa4eb63757fe9d55.png" src="_images/d298a915994c3ae5efdcda0f4475288b0018d706f443b202fa4eb63757fe9d55.png" />
+</div>
+</div>
+</section>
+<section id="making-connections">
+<h2>Making Connections<a class="headerlink" href="#making-connections" title="Permalink to this headline">#</a></h2>
+<p>What does Euler’s method have to do with the numerical integration routines we’ve learned earlier in the course? How can we use these ideas/connections to improve upon Euler’s method?</p>
+<ul class="simple">
+<li><p>Pick a differential equation with an analytical solution.</p></li>
+<li><p>Find the exact solution.</p></li>
+<li><p>Write an improved Euler method that uses the ideas we discuss above.</p></li>
+<li><p>Plot the exact solution, the solution from Euler’s method, and the new solution on the same figure.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#b = 0.25 case of lake ODE</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">ps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#inital time</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span>  <span class="c1">#Improved Euler method loop</span>
+    <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+    <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="o">*</span><span class="n">dpdt</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">ps</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1f96fda2040&gt;]
+</pre></div>
+</div>
+<img alt="_images/7b96ed80aa735beb9a08e2eae7ffea8fd7ec00d0b58be4b70e55ad969c2458ed.png" src="_images/7b96ed80aa735beb9a08e2eae7ffea8fd7ec00d0b58be4b70e55ad969c2458ed.png" />
+</div>
+</div>
+</section>
+<section id="runge-kutta">
+<h2>Runge-Kutta<a class="headerlink" href="#runge-kutta" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="built-in-routines-and-what-they-are-trying-to-do">
+<h2>Built in routines and what they are trying to do<a class="headerlink" href="#built-in-routines-and-what-they-are-trying-to-do" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html">Solve_ivp</a> is a built in routine for solving initial value problems. Note the location of this routine inside the integrate package of scipy. Look at the documentation. What kinds of DEs is this routine “limited” to?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="n">q</span><span class="o">=</span> <span class="mf">8.</span>
+
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dpdt</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mf">5.</span><span class="p">],[</span><span class="mf">0.8</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: &#39;The solver successfully reached the end of the integration interval.&#39;
+     nfev: 56
+     njev: 0
+      nlu: 0
+      sol: None
+   status: 0
+  success: True
+        t: array([0.        , 0.09788051, 0.40188746, 0.70589441, 1.22044653,
+       2.16013278, 3.20907242, 4.48958699, 5.        ])
+ t_events: None
+        y: array([[0.8       , 0.82170008, 1.16104253, 2.18175535, 3.41515046,
+        4.53242779, 4.9981761 , 5.17946109, 5.20765496]])
+ y_events: None
+</pre></div>
+</div>
+<img alt="_images/23b8dc4cb7c05967457d2118ee8c3e1d8630f7b7674b96a66df184a489bd270f.png" src="_images/23b8dc4cb7c05967457d2118ee8c3e1d8630f7b7674b96a66df184a489bd270f.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>Consider a mass hanging from a ceiling by a spring with stiffness <span class="math notranslate nohighlight">\(k\)</span> and damping <span class="math notranslate nohighlight">\(b\)</span>. Gravity acts in the positive <span class="math notranslate nohighlight">\(y\)</span> direction. Initially the mass is at rest and the spring is unstretched.</p>
+<ul class="simple">
+<li><p>Draw a picture of the situation.</p></li>
+<li><p>Write a differential equation for the motion of the mass. What is the initial condition?</p></li>
+<li><p>What labels can you apply to the DE?</p></li>
+<li><p>Solve analytically if possible.</p></li>
+<li><p>Rewrite this as a system of first order DE.</p></li>
+<li><p>Use solve_ivp to numerically approximate the solution.</p></li>
+<li><p>Plot this approximation and the exact solution on one figure.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Numerical_differentiation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Numerical differentiation basics with python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ODEs_systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Systems of ODEs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saltwater">Saltwater</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lake-eutrophication">Lake Eutrophication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-connections">Making Connections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-kutta">Runge-Kutta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-routines-and-what-they-are-trying-to-do">Built in routines and what they are trying to do</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
