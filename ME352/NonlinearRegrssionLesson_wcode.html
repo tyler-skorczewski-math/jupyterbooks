@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Nonlinear regression &#8212; ME 352 Labs book</title>
+    <title>Lesson 11: Nonlinear regression &#8212; ME 352 Labs book</title>
   
   
   
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'NonlinearRegrssionLesson_wcode';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Linear Algebra basics with python" href="LinearAlgebra_intro.html" />
-    <link rel="prev" title="Logscale and nonlinear regression" href="LogscaleRegressionLesson.html" />
+    <link rel="next" title="Lesson 12: Linear Algebra basics with python" href="LinearAlgebra_intro.html" />
+    <link rel="prev" title="Lesson 10: Logscale and nonlinear regression" href="LogscaleRegressionLesson.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -161,23 +161,24 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Lesson2_fcns_vars.html">Lesson 2: Functions and Variables</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="program_control.html">Program control: if/else and loops</a></li>
-<li class="toctree-l1"><a class="reference internal" href="taylor_expansion_log.html">Taylor Polynomial Expansions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rootfinding_lesson.html">Root finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MoreEquationSolving.html">More equation solving examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="InterpolationLesson.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="RegressionLesson.html">Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LogscaleRegressionLesson.html">Logscale and nonlinear regression</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nonlinear regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_intro.html">Linear Algebra basics with python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_eqns_eigenvals.html">Linear Algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Numerical_integration.html">Numerical Integration basics with python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Numerical_differentiation.html">Numerical differentiation basics with python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ODEs_intro.html">Introduction to ODEs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ODEs_systems.html">Systems of ODEs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ODEs_systems-Rossler_Lorenz.html">Rossler and Lorenz systems of ODEs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BVPs_FD.html">Introduction to BVPs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="BVPs_shootingmethod.html">BVPs - shooting methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program_control.html">Lesson 3: Program control: if/else and loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="taylor_expansion_log.html">Lesson 4: Taylor Polynomial Expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rootfinding_lesson.html">Lesson 5: Root finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MoreEquationSolving.html">Lesson 6: More equation solving examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InterpolationLesson.html">Lesson 7: Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cubicsplineslesson.html">Lesson 8: Interpolation and cubic splines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RegressionLesson.html">Lesson 9: Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogscaleRegressionLesson.html">Lesson 10: Logscale and nonlinear regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lesson 11: Nonlinear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_intro.html">Lesson 12: Linear Algebra basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearAlgebra_eqns_eigenvals.html">Lesson 13: Linear Algebra - eigenvalues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_integration.html">Lesson 14: Numerical Integration basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numerical_differentiation.html">Lesson 15: Numerical differentiation basics with python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_intro.html">Lesson 16: Introduction to ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems.html">Lesson 17: Systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ODEs_systems-Rossler_Lorenz.html">Lesson 18: Rossler and Lorenz systems of ODEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_FD.html">Lesson 19: Introduction to BVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BVPs_shootingmethod.html">Lesson 20: BVPs - shooting methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Labs</span></p>
 <ul class="nav bd-sidenav">
@@ -376,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Nonlinear regression</h1>
+    <h1>Lesson 11: Nonlinear regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -400,8 +401,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-regression">
-<h1>Nonlinear regression<a class="headerlink" href="#nonlinear-regression" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lesson-11-nonlinear-regression">
+<h1>Lesson 11: Nonlinear regression<a class="headerlink" href="#lesson-11-nonlinear-regression" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -472,7 +473,7 @@ document.write(`
 <li><p>Fit with semilog regression - exponential fit</p></li>
 <li><p>Use scipy curve fit for exponential fit</p></li>
 <li><p>Use scipy curve fit for general power law</p></li>
-<li><p>Use scipy curve fit for <span class="math notranslate nohighlight">\(r_p = \frac{a}{b- f}\)</span>.</p></li>
+<li><p>Use scipy curve fit for <span class="math notranslate nohighlight">\(\displaystyle r_p = \frac{a}{b- f}\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -621,7 +622,7 @@ the relevant variables would be:</p>
 </tr>
 </tbody>
 </table>
-<p><img alt="trinity_snaps.jpg" src="attachment:trinity_snaps.jpg" /></p>
+<a class="reference internal image-reference" href="_images/nuclear.jpg"><img alt="trinity nuclear blast pictures" class="align-center" src="_images/nuclear.jpg" style="width: 500px;" /></a>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">1.08</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.93</span><span class="p">,</span><span class="mf">4.07</span><span class="p">,</span><span class="mf">15.</span><span class="p">,</span><span class="mf">34.</span><span class="p">])</span>
@@ -699,7 +700,7 @@ the relevant variables would be:</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Logscale and nonlinear regression</p>
+        <p class="prev-next-title">Lesson 10: Logscale and nonlinear regression</p>
       </div>
     </a>
     <a class="right-next"
@@ -707,7 +708,7 @@ the relevant variables would be:</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear Algebra basics with python</p>
+        <p class="prev-next-title">Lesson 12: Linear Algebra basics with python</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
