@@ -1,0 +1,1167 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Rating &amp; Ranking 2023 WIAC Women’s CBB &#8212; MSCS 351 Jupyter notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wiacwomenscbb2023';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2016 Big Ten CBB" href="B1G2016CBB.html" />
+    <link rel="prev" title="Predict last two games?" href="massey.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MSCS 351 Mathematical Modeling Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="seeds_solve.html">Seeds Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LP_farm.html">Family farm example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="pulpex.html">PuLP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1.html">Family farm example</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ILP_lesson.html">ILP Lesson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1_mip.html">Example 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Rating and Ranking</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="rating_ranking.html">Rating and Ranking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="massey.html">Predict last two games?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Rating &amp; Ranking 2023 WIAC Women’s CBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="B1G2016CBB.html">2016 Big Ten CBB</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DimensionalAnalysis_Regression.html">Dimensional Analysis and Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nonlinear_regression.html">Nonlinear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical Systems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_intro.html">Introduction to dynamical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_qualitative.html">Lake Eutrophication</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_3.html">Lake Eutrophication</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="SIR.html">SIR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIRgillespie.html">Stochastic model ideas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2Fwiacwomenscbb2023.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/wiacwomenscbb2023.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Rating & Ranking 2023 WIAC Women’s CBB</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tournament-matrix-analysis">Tournament matrix analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-rating">Spectral rating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elo-rating">Elo rating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colley">Colley</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#massey">Massey</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-graph-using-networkx">Draw graph using networkx?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="rating-ranking-2023-wiac-women-s-cbb">
+<h1>Rating &amp; Ranking 2023 WIAC Women’s CBB<a class="headerlink" href="#rating-ranking-2023-wiac-women-s-cbb" title="Permalink to this headline">#</a></h1>
+<p>and predicting the conference tournament</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get teams</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.ncaa.com/scoreboard/basketball-women/d3/2023/02/15/wiac&quot;</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">):</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;gamePod-game-team-name&quot;</span><span class="p">)</span>
+
+<span class="n">teams</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>  <span class="c1">#empty array of teams</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">teams</span><span class="p">)</span><span class="si">}</span><span class="s2"> teams.&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">teams</span><span class="p">)):</span>
+    <span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">teams</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 8 teams.
+[&#39;Wis.-La Crosse&#39;, &#39;UW-River Falls&#39;, &#39;Wis.-Stevens Point&#39;, &#39;Wis.-Oshkosh&#39;, &#39;Wis.-Whitewater&#39;, &#39;Wis.-Platteville&#39;, &#39;Wis.-Eau Claire&#39;, &#39;Wis.-Stout&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#loop over season dates and extract games</span>
+
+
+<span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2022</span><span class="p">,</span><span class="mi">2022</span><span class="p">,</span><span class="mi">2023</span><span class="p">,</span><span class="mi">2023</span><span class="p">]</span><span class="c1">#,2023]</span>
+<span class="n">months</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="s2">&quot;02&quot;</span><span class="p">]</span><span class="c1">#, &quot;03&quot;]</span>
+<span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+
+
+<span class="c1">#initialize and create empty numpy tournament matrix</span>
+<span class="n">tmat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">teams</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">teams</span><span class="p">)))</span>
+<span class="n">gamectr</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">games</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">months</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="n">days</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">day</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.ncaa.com/scoreboard/basketball-women/d3/</span><span class="si">{</span><span class="n">years</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">months</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">/0</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">/wiac&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.ncaa.com/scoreboard/basketball-women/d3/</span><span class="si">{</span><span class="n">years</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">months</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">/wiac&quot;</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">):</span>
+            <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+                       
+            <span class="n">names</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;gamePod-game-team-name&quot;</span><span class="p">)</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;gamePod-game-team-score&quot;</span><span class="p">)</span>
+            
+            <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#number of games</span>
+            
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="ow">in</span> <span class="n">teams</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="ow">in</span> <span class="n">teams</span><span class="p">)):</span>  <span class="c1">#make sure both teams are in WIAC</span>
+                    <span class="c1">#print(f&quot;{names[2*i].text} is in teams and so is {names[2*i+1].text}&quot;)</span>
+                    <span class="c1">#gamectr += 1</span>
+                    <span class="k">if</span> <span class="ow">not</span><span class="p">((</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)):</span> <span class="c1">#make sure both teams have a score, ie game played</span>
+                        <span class="n">gamectr</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="n">games</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="n">years</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">months</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">day</span><span class="p">])</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)):</span>  <span class="c1">#away team win</span>
+                            <span class="n">tmat</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)]</span><span class="o">+=</span><span class="mi">1</span> 
+                            <span class="c1">#print(f&quot;{names[2*i].text} beat {names[2*i+1].text} by a score of {scores[2*i].text} to {scores[2*i+1].text} on {months[j]}/{day}&quot;)</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)):</span>  <span class="c1">#home team win</span>
+                            <span class="n">tmat</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)]</span><span class="o">+=</span><span class="mi">1</span>
+                            <span class="c1">#print(f&quot;{names[2*i+1].text} beat {names[2*i].text} by a score of {scores[2*i+1].text} to {scores[2*i].text} on {months[j]}/{day}&quot;)</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)):</span>   <span class="c1">#draw</span>
+                            <span class="n">tmat</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)]</span><span class="o">+=</span><span class="mf">0.5</span>
+                            <span class="n">tmat</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)]</span><span class="o">+=</span><span class="mf">0.5</span>
+                    <span class="c1">#else:</span>
+                        <span class="c1">#print(f&quot;Game between {names[2*i].text} and {names[2*i+1].text} on {months[j]}/{day}  has missing score(s)&quot;)</span>
+                <span class="c1">#else:</span>
+                    <span class="c1">#print(f&quot;Game between {names[2*i].text} and {names[2*i+1].text} on {months[j]}/{day} is missing teams index&quot;)</span>
+            
+            
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed </span><span class="si">{</span><span class="n">gamectr</span><span class="si">}</span><span class="s2"> games!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 14&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.ncaa.com/scoreboard/basketball-women/d3/</span><span class="si">{</span><span class="n">years</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">months</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">/wiac&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">if</span> <span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\requests\api.py:75,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="w">     </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request.</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span><span class="sd">     :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span><span class="sd">     :rtype: requests.Response</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">75</span>     <span class="k">return</span> <span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\requests\api.py:61,</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># By using the &#39;with&#39; statement we are sure the session is closed, thus we</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="c1"># avoid leaving sockets open which can trigger a ResourceWarning in some</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="c1"># cases, and look like a memory leak in others.</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="k">with</span> <span class="n">sessions</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">61</span>     <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\requests\sessions.py:529,</span> in <span class="ni">Session.request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span> <span class="n">send_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="s1">&#39;timeout&#39;</span><span class="p">:</span> <span class="n">timeout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span>     <span class="s1">&#39;allow_redirects&#39;</span><span class="p">:</span> <span class="n">allow_redirects</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">529</span> <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span> <span class="k">return</span> <span class="n">resp</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\requests\sessions.py:645,</span> in <span class="ni">Session.send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="n">start</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">644</span> <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">645</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">647</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span> <span class="n">elapsed</span> <span class="o">=</span> <span class="n">preferred_clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\requests\adapters.py:440,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">chunked</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">440</span>         <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>             <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span>             <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span>             <span class="n">body</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>             <span class="n">headers</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span>             <span class="n">redirect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>             <span class="n">assert_same_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>             <span class="n">preload_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>             <span class="n">decode_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>             <span class="n">retries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span>             <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>     <span class="c1"># Send the request.</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s1">&#39;proxy_pool&#39;</span><span class="p">):</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\urllib3\connectionpool.py:703,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_proxy</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="c1"># Make the request on the httplib connection object.</span>
+<span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">url</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span> <span class="c1"># If we&#39;re going to release the connection in ``finally:``, then</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="c1"># the response doesn&#39;t need to know about the connection. Otherwise</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="c1"># it will also try to release it and we&#39;ll have a double-release</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span> <span class="c1"># mess.</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span> <span class="n">response_conn</span> <span class="o">=</span> <span class="n">conn</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">release_conn</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\urllib3\connectionpool.py:386,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="c1"># Trigger any extra validation we need to do.</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">386</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span> <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span>     <span class="c1"># Py2 raises this as a BaseSSLError, Py3 raises it as socket timeout.</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_timeout</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="n">conn</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\urllib3\connectionpool.py:1040,</span> in <span class="ni">HTTPSConnectionPool._validate_conn</span><span class="nt">(self, conn)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span> <span class="c1"># Force connect early to allow us to validate the connection.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;sock&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>  <span class="c1"># AppEngine might not have  `.sock`</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">conn</span><span class="o">.</span><span class="n">is_verified</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>         <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span>             <span class="s2">&quot;Unverified HTTPS request is being made to host &#39;</span><span class="si">%s</span><span class="s2">&#39;. &quot;</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>         <span class="n">InsecureRequestWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1051</span>     <span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\urllib3\connection.py:414,</span> in <span class="ni">HTTPSConnection.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">405</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca_certs</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_dir</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">410</span>     <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s2">&quot;load_default_certs&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">411</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="n">context</span><span class="o">.</span><span class="n">load_default_certs</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">414</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">ssl_wrap_socket</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span>     <span class="n">sock</span><span class="o">=</span><span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span>     <span class="n">keyfile</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="n">certfile</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span>     <span class="n">key_password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key_password</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>     <span class="n">ca_certs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_certs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="n">ca_cert_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_dir</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span>     <span class="n">ca_cert_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">422</span>     <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span>     <span class="n">ssl_context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">424</span>     <span class="n">tls_in_tls</span><span class="o">=</span><span class="n">tls_in_tls</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">425</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">427</span> <span class="c1"># If we&#39;re using all defaults and the connection</span>
+<span class="g g-Whitespace">    </span><span class="mi">428</span> <span class="c1"># is TLSv1 or TLSv1.1 we throw a DeprecationWarning</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span> <span class="c1"># for the host.</span>
+<span class="g g-Whitespace">    </span><span class="mi">430</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">431</span>     <span class="n">default_ssl_context</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span>     <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssl_version</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span>     <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span>     <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">version</span><span class="p">()</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;TLSv1&quot;</span><span class="p">,</span> <span class="s2">&quot;TLSv1.1&quot;</span><span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">435</span> <span class="p">):</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\urllib3\util\ssl_.py:402,</span> in <span class="ni">ssl_wrap_socket</span><span class="nt">(sock, keyfile, certfile, cert_reqs, ca_certs, server_hostname, ssl_version, ciphers, ssl_context, ca_cert_dir, key_password, ca_cert_data, tls_in_tls)</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span> <span class="k">if</span> <span class="n">ca_certs</span> <span class="ow">or</span> <span class="n">ca_cert_dir</span> <span class="ow">or</span> <span class="n">ca_cert_data</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">402</span>         <span class="n">context</span><span class="o">.</span><span class="n">load_verify_locations</span><span class="p">(</span><span class="n">ca_certs</span><span class="p">,</span> <span class="n">ca_cert_dir</span><span class="p">,</span> <span class="n">ca_cert_data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span>     <span class="k">except</span> <span class="p">(</span><span class="ne">IOError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="k">raise</span> <span class="n">SSLError</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Wis.-Platteville&#39;, &#39;Wis.-Oshkosh&#39;, &#39;60&#39;, &#39;35&#39;, 2022, &#39;11&#39;, 30], [&#39;UW-River Falls&#39;, &#39;Wis.-Eau Claire&#39;, &#39;71&#39;, &#39;74&#39;, 2022, &#39;11&#39;, 30], [&#39;Wis.-Whitewater&#39;, &#39;Wis.-La Crosse&#39;, &#39;58&#39;, &#39;53&#39;, 2022, &#39;11&#39;, 30], [&#39;Wis.-Stout&#39;, &#39;Wis.-Stevens Point&#39;, &#39;64&#39;, &#39;58&#39;, 2022, &#39;11&#39;, 30], [&#39;Wis.-Oshkosh&#39;, &#39;Wis.-Stout&#39;, &#39;58&#39;, &#39;66&#39;, 2022, &#39;12&#39;, 3], [&#39;UW-River Falls&#39;, &#39;Wis.-Whitewater&#39;, &#39;67&#39;, &#39;64&#39;, 2022, &#39;12&#39;, 3], [&#39;Wis.-Platteville&#39;, &#39;Wis.-Stevens Point&#39;, &#39;53&#39;, &#39;59&#39;, 2022, &#39;12&#39;, 3], [&#39;Wis.-La Crosse&#39;, &#39;Wis.-Eau Claire&#39;, &#39;56&#39;, &#39;68&#39;, 2022, &#39;12&#39;, 3], [&#39;Wis.-Stout&#39;, &#39;UW-River Falls&#39;, &#39;74&#39;, &#39;59&#39;, 2023, &#39;01&#39;, 4], [&#39;Wis.-Eau Claire&#39;, &#39;Wis.-Oshkosh&#39;, &#39;62&#39;, &#39;53&#39;, 2023, &#39;01&#39;, 4], [&#39;Wis.-La Crosse&#39;, &#39;Wis.-Platteville&#39;, &#39;70&#39;, &#39;55&#39;, 2023, &#39;01&#39;, 4], [&#39;Wis.-Stevens Point&#39;, &#39;Wis.-Whitewater&#39;, &#39;52&#39;, &#39;55&#39;, 2023, &#39;01&#39;, 4], [&#39;Wis.-Oshkosh&#39;, &#39;UW-River Falls&#39;, &#39;64&#39;, &#39;53&#39;, 2023, &#39;01&#39;, 7], [&#39;Wis.-Platteville&#39;, &#39;Wis.-Stout&#39;, &#39;61&#39;, &#39;72&#39;, 2023, &#39;01&#39;, 7], [&#39;Wis.-Stevens Point&#39;, &#39;Wis.-La Crosse&#39;, &#39;45&#39;, &#39;47&#39;, 2023, &#39;01&#39;, 7], [&#39;Wis.-Whitewater&#39;, &#39;Wis.-Eau Claire&#39;, &#39;79&#39;, &#39;69&#39;, 2023, &#39;01&#39;, 7], [&#39;Wis.-Eau Claire&#39;, &#39;Wis.-Platteville&#39;, &#39;75&#39;, &#39;59&#39;, 2023, &#39;01&#39;, 11], [&#39;Wis.-Oshkosh&#39;, &#39;Wis.-Whitewater&#39;, &#39;56&#39;, &#39;66&#39;, 2023, &#39;01&#39;, 11], [&#39;Wis.-Stout&#39;, &#39;Wis.-La Crosse&#39;, &#39;54&#39;, &#39;72&#39;, 2023, &#39;01&#39;, 11], [&#39;UW-River Falls&#39;, &#39;Wis.-Stevens Point&#39;, &#39;49&#39;, &#39;54&#39;, 2023, &#39;01&#39;, 11], [&#39;Wis.-Platteville&#39;, &#39;UW-River Falls&#39;, &#39;51&#39;, &#39;61&#39;, 2023, &#39;01&#39;, 14], [&#39;Wis.-Whitewater&#39;, &#39;Wis.-Stout&#39;, &#39;65&#39;, &#39;72&#39;, 2023, &#39;01&#39;, 14], [&#39;Wis.-La Crosse&#39;, &#39;Wis.-Oshkosh&#39;, &#39;53&#39;, &#39;61&#39;, 2023, &#39;01&#39;, 14], [&#39;Wis.-Stevens Point&#39;, &#39;Wis.-Eau Claire&#39;, &#39;38&#39;, &#39;57&#39;, 2023, &#39;01&#39;, 14], [&#39;Wis.-Platteville&#39;, &#39;Wis.-Whitewater&#39;, &#39;65&#39;, &#39;49&#39;, 2023, &#39;01&#39;, 18], [&#39;UW-River Falls&#39;, &#39;Wis.-La Crosse&#39;, &#39;36&#39;, &#39;63&#39;, 2023, &#39;01&#39;, 18], [&#39;Wis.-Oshkosh&#39;, &#39;Wis.-Stevens Point&#39;, &#39;58&#39;, &#39;38&#39;, 2023, &#39;01&#39;, 18], [&#39;Wis.-Stout&#39;, &#39;Wis.-Eau Claire&#39;, &#39;59&#39;, &#39;85&#39;, 2023, &#39;01&#39;, 18], [&#39;Wis.-Whitewater&#39;, &#39;UW-River Falls&#39;, &#39;65&#39;, &#39;54&#39;, 2023, &#39;01&#39;, 21], [&#39;Wis.-Stout&#39;, &#39;Wis.-Oshkosh&#39;, &#39;73&#39;, &#39;75&#39;, 2023, &#39;01&#39;, 21], [&#39;Wis.-Stevens Point&#39;, &#39;Wis.-Platteville&#39;, &#39;51&#39;, &#39;49&#39;, 2023, &#39;01&#39;, 21], [&#39;Wis.-Eau Claire&#39;, &#39;Wis.-La Crosse&#39;, &#39;64&#39;, &#39;60&#39;, 2023, &#39;01&#39;, 21], [&#39;Wis.-Eau Claire&#39;, &#39;UW-River Falls&#39;, &#39;70&#39;, &#39;81&#39;, 2023, &#39;01&#39;, 25], [&#39;Wis.-Stevens Point&#39;, &#39;Wis.-Stout&#39;, &#39;54&#39;, &#39;71&#39;, 2023, &#39;01&#39;, 25], [&#39;Wis.-Oshkosh&#39;, &#39;Wis.-Platteville&#39;, &#39;60&#39;, &#39;59&#39;, 2023, &#39;01&#39;, 25], [&#39;Wis.-La Crosse&#39;, &#39;Wis.-Whitewater&#39;, &#39;36&#39;, &#39;66&#39;, 2023, &#39;01&#39;, 25], [&#39;UW-River Falls&#39;, &#39;Wis.-Stout&#39;, &#39;55&#39;, &#39;70&#39;, 2023, &#39;02&#39;, 1], [&#39;Wis.-Oshkosh&#39;, &#39;Wis.-Eau Claire&#39;, &#39;65&#39;, &#39;57&#39;, 2023, &#39;02&#39;, 1], [&#39;Wis.-Platteville&#39;, &#39;Wis.-La Crosse&#39;, &#39;43&#39;, &#39;70&#39;, 2023, &#39;02&#39;, 1], [&#39;Wis.-Whitewater&#39;, &#39;Wis.-Stevens Point&#39;, &#39;73&#39;, &#39;64&#39;, 2023, &#39;02&#39;, 1], [&#39;UW-River Falls&#39;, &#39;Wis.-Oshkosh&#39;, &#39;44&#39;, &#39;54&#39;, 2023, &#39;02&#39;, 4], [&#39;Wis.-Stout&#39;, &#39;Wis.-Platteville&#39;, &#39;70&#39;, &#39;61&#39;, 2023, &#39;02&#39;, 4], [&#39;Wis.-Eau Claire&#39;, &#39;Wis.-Whitewater&#39;, &#39;52&#39;, &#39;84&#39;, 2023, &#39;02&#39;, 4], [&#39;Wis.-La Crosse&#39;, &#39;Wis.-Stevens Point&#39;, &#39;58&#39;, &#39;48&#39;, 2023, &#39;02&#39;, 4], [&#39;Wis.-Stevens Point&#39;, &#39;UW-River Falls&#39;, &#39;53&#39;, &#39;64&#39;, 2023, &#39;02&#39;, 8], [&#39;Wis.-La Crosse&#39;, &#39;Wis.-Stout&#39;, &#39;90&#39;, &#39;95&#39;, 2023, &#39;02&#39;, 8], [&#39;Wis.-Whitewater&#39;, &#39;Wis.-Oshkosh&#39;, &#39;67&#39;, &#39;55&#39;, 2023, &#39;02&#39;, 8], [&#39;Wis.-Platteville&#39;, &#39;Wis.-Eau Claire&#39;, &#39;59&#39;, &#39;65&#39;, 2023, &#39;02&#39;, 8], [&#39;UW-River Falls&#39;, &#39;Wis.-Platteville&#39;, &#39;55&#39;, &#39;57&#39;, 2023, &#39;02&#39;, 11], [&#39;Wis.-Stout&#39;, &#39;Wis.-Whitewater&#39;, &#39;75&#39;, &#39;78&#39;, 2023, &#39;02&#39;, 11], [&#39;Wis.-Oshkosh&#39;, &#39;Wis.-La Crosse&#39;, &#39;42&#39;, &#39;56&#39;, 2023, &#39;02&#39;, 11], [&#39;Wis.-Eau Claire&#39;, &#39;Wis.-Stevens Point&#39;, &#39;72&#39;, &#39;60&#39;, 2023, &#39;02&#39;, 11], [&#39;Wis.-La Crosse&#39;, &#39;UW-River Falls&#39;, &#39;62&#39;, &#39;43&#39;, 2023, &#39;02&#39;, 15], [&#39;Wis.-Stevens Point&#39;, &#39;Wis.-Oshkosh&#39;, &#39;38&#39;, &#39;69&#39;, 2023, &#39;02&#39;, 15], [&#39;Wis.-Whitewater&#39;, &#39;Wis.-Platteville&#39;, &#39;52&#39;, &#39;61&#39;, 2023, &#39;02&#39;, 15], [&#39;Wis.-Eau Claire&#39;, &#39;Wis.-Stout&#39;, &#39;45&#39;, &#39;63&#39;, 2023, &#39;02&#39;, 15]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tmat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 2. 2. 1. 0. 2. 0. 1.]
+ [0. 0. 1. 0. 1. 1. 1. 0.]
+ [0. 1. 0. 0. 0. 2. 0. 0.]
+ [1. 2. 2. 0. 0. 1. 1. 1.]
+ [2. 1. 2. 2. 0. 0. 2. 1.]
+ [0. 1. 0. 1. 2. 0. 0. 0.]
+ [2. 1. 2. 1. 0. 2. 0. 1.]
+ [1. 2. 2. 1. 1. 2. 1. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tournament-matrix-analysis">
+<h2>Tournament matrix analysis<a class="headerlink" href="#tournament-matrix-analysis" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wiacwins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">wiacwins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmat</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Team: Wins&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">wiacwins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Team: Wins
+Wis.-La Crosse: 8.0
+UW-River Falls: 4.0
+Wis.-Stevens Point: 3.0
+Wis.-Oshkosh: 8.0
+Wis.-Whitewater: 10.0
+Wis.-Platteville: 4.0
+Wis.-Eau Claire: 9.0
+Wis.-Stout: 10.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tmat</span><span class="p">,</span><span class="n">tmat</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+
+<span class="n">wiac2wins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">wiac2wins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">t2</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Team: Second Order Wins&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">wiac2wins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2.  8.  6.  3.  7.  9.  4.  1.]
+ [ 4.  4.  4.  4.  2.  4.  2.  2.]
+ [ 0.  2.  1.  2.  5.  1.  1.  0.]
+ [ 3.  8.  8.  4.  5. 12.  3.  2.]
+ [ 7. 14. 15.  5.  2. 17.  4.  6.]
+ [ 5.  4.  7.  4.  1.  2.  6.  3.]
+ [ 2. 12.  9.  5.  6. 12.  3.  3.]
+ [ 5. 10. 10.  6.  6. 11.  5.  4.]]
+Team: Second Order Wins
+Wis.-La Crosse: 40.0
+UW-River Falls: 26.0
+Wis.-Stevens Point: 12.0
+Wis.-Oshkosh: 45.0
+Wis.-Whitewater: 70.0
+Wis.-Platteville: 32.0
+Wis.-Eau Claire: 52.0
+Wis.-Stout: 57.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="spectral-rating">
+<h2>Spectral rating<a class="headerlink" href="#spectral-rating" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wiacL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tmat</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">wiacL</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">wiacL</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span><span class="o">/</span><span class="n">wiacL</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">v</span><span class="p">,</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">wiacL</span><span class="p">)</span>
+
+
+<span class="n">wiacspecrat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Team: Spectral Rating&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{:5.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">wiacspecrat</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Team: Spectral Rating
+Wis.-La Crosse:   0.6
+UW-River Falls:   0.5
+Wis.-Stevens Point:   0.2
+Wis.-Oshkosh:   0.7
+Wis.-Whitewater:   1.0
+Wis.-Platteville:   0.7
+Wis.-Eau Claire:   0.7
+Wis.-Stout:   0.9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="elo-rating">
+<h2>Elo rating<a class="headerlink" href="#elo-rating" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numgames</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">elo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numgames</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">hteam</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ateam</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">hscore</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">ascore</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1">#get ratings</span>
+    <span class="n">hrat</span> <span class="o">=</span> <span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">hteam</span><span class="p">)]</span>
+    <span class="n">arat</span> <span class="o">=</span> <span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ateam</span><span class="p">)]</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">hrat</span> <span class="o">-</span> <span class="n">arat</span>
+    
+    <span class="c1">#calc expected results/probs of winning</span>
+    <span class="n">hexp</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">diff</span><span class="o">/</span><span class="n">scale</span><span class="p">))</span>
+    <span class="n">aexp</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">hexp</span>
+    
+    <span class="c1">#update ratings</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">hscore</span> <span class="o">&gt;</span> <span class="n">ascore</span><span class="p">):</span> <span class="c1">#home team win</span>
+        <span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">hteam</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">hexp</span><span class="p">)</span>
+        <span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ateam</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="mf">0.</span> <span class="o">-</span> <span class="n">aexp</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">ascore</span> <span class="o">&gt;</span> <span class="n">hscore</span><span class="p">):</span> <span class="c1">#away team win</span>
+        <span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">hteam</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="mf">0.</span> <span class="o">-</span> <span class="n">hexp</span><span class="p">)</span>
+        <span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ateam</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">K</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">aexp</span><span class="p">)</span>
+    <span class="c1">#no else or draws needed</span>
+    
+    <span class="c1">#[print(name,elo[names.index(name)]) for name in names ]</span>
+<span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">elo</span><span class="p">[</span><span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">name</span><span class="p">)])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">teams</span> <span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wis.-La Crosse 1051.9472395876528
+UW-River Falls 871.8910603571981
+Wis.-Stevens Point 825.556990780845
+Wis.-Oshkosh 1060.9810821669041
+Wis.-Whitewater 1122.4058855186036
+Wis.-Platteville 884.6999690640331
+Wis.-Eau Claire 1059.7165354939345
+Wis.-Stout 1122.8012370308286
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="colley">
+<h2>Colley<a class="headerlink" href="#colley" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Cmat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">bvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">Cmat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.</span>
+    <span class="n">bvec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    
+
+<span class="n">numgames</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numgames</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">hteam</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ateam</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">hscore</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">ascore</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">hidx</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">hteam</span><span class="p">)</span>
+    <span class="n">aidx</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ateam</span><span class="p">)</span>
+    
+    <span class="n">Cmat</span><span class="p">[</span><span class="n">hidx</span><span class="p">,</span><span class="n">hidx</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>  <span class="c1">#add 1 to total games played by home team</span>
+    <span class="n">Cmat</span><span class="p">[</span><span class="n">aidx</span><span class="p">,</span><span class="n">aidx</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span>
+    
+    <span class="n">Cmat</span><span class="p">[</span><span class="n">hidx</span><span class="p">,</span><span class="n">aidx</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">1.</span> <span class="c1">#add -1 to offdiagonal entry corresponding to opponent</span>
+    <span class="n">Cmat</span><span class="p">[</span><span class="n">aidx</span><span class="p">,</span><span class="n">hidx</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">1.</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="n">hscore</span> <span class="o">&gt;</span> <span class="n">ascore</span><span class="p">):</span> <span class="c1">#home team win</span>
+        <span class="n">bvec</span><span class="p">[</span><span class="n">hidx</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">2.</span>
+        <span class="n">bvec</span><span class="p">[</span><span class="n">aidx</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">ascore</span> <span class="o">&gt;</span> <span class="n">hscore</span><span class="p">):</span> <span class="c1">#away team win</span>
+        <span class="n">bvec</span><span class="p">[</span><span class="n">aidx</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">2.</span>
+        <span class="n">bvec</span><span class="p">[</span><span class="n">hidx</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span>
+
+<span class="n">Crating</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Cmat</span><span class="p">,</span><span class="n">bvec</span><span class="p">)</span>
+
+
+
+<span class="c1">#print(Cmat)</span>
+<span class="c1">#print(bvec)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Team:  Colley rating&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">Crating</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">4.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Team:  Colley rating
+Wis.-La Crosse: 0.56
+UW-River Falls: 0.33
+Wis.-Stevens Point: 0.28
+Wis.-Oshkosh: 0.56
+Wis.-Whitewater: 0.67
+Wis.-Platteville: 0.33
+Wis.-Eau Claire: 0.61
+Wis.-Stout: 0.67
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="massey">
+<h2>Massey<a class="headerlink" href="#massey" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numgames</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">games</span><span class="p">)</span>
+<span class="n">numteams</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">teams</span><span class="p">)</span>
+<span class="n">AN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numgames</span><span class="p">,</span><span class="n">numteams</span><span class="p">))</span>
+<span class="n">BN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numgames</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">#build matrix and RHS vector</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numgames</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">hteam</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ateam</span> <span class="o">=</span> <span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">hscore</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">ascore</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">games</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">hidx</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">hteam</span><span class="p">)</span>
+    <span class="n">aidx</span> <span class="o">=</span> <span class="n">teams</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">ateam</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">hscore</span><span class="o">&gt;</span><span class="n">ascore</span><span class="p">:</span>
+        <span class="n">AN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">hidx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="n">AN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">aidx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
+        <span class="n">BN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">hscore</span><span class="o">-</span><span class="n">ascore</span>
+    <span class="k">elif</span> <span class="n">ascore</span><span class="o">&gt;</span><span class="n">hscore</span><span class="p">:</span>
+        <span class="n">AN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">hidx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span>
+        <span class="n">AN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">aidx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+        <span class="n">BN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ascore</span><span class="o">-</span><span class="n">hscore</span>
+
+<span class="n">MAT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">AN</span><span class="p">),</span><span class="n">AN</span><span class="p">)</span>
+<span class="n">BT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">AN</span><span class="p">),</span><span class="n">BN</span><span class="p">)</span>
+<span class="n">MAT</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">numteams</span><span class="p">)</span>
+<span class="n">BT</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">MAT</span><span class="p">,</span><span class="n">BT</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Team:  Massey rating&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numteams</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">4.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Team:  Massey rating
+Wis.-La Crosse: 4.25
+UW-River Falls: -5.19
+Wis.-Stevens Point: -7.94
+Wis.-Oshkosh: 0.81
+Wis.-Whitewater: 5.63
+Wis.-Platteville: -3.19
+Wis.-Eau Claire: 1.75
+Wis.-Stout: 3.88
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="draw-graph-using-networkx">
+<h2>Draw graph using networkx?<a class="headerlink" href="#draw-graph-using-networkx" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">tmat</span><span class="p">)</span>
+<span class="n">ecol</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">]</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">(</span><span class="n">edge_attr</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span> 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Adj</span><span class="p">)):</span> 
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Adj</span><span class="p">)):</span> 
+        <span class="k">if</span> <span class="n">Adj</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> 
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Adj</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> 
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">weight</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            
+<span class="n">labeldict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span><span class="s1">&#39;cyan&#39;</span><span class="p">]</span>
+
+<span class="n">nodecolors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numteams</span><span class="p">):</span>
+    <span class="n">labeldict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">teams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">nodecolors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="k">8</span>])
+
+<span class="c1">#nx.draw_networkx( G,labels=labeldict, with_labels=True, node_color=nodecolors,pos=nx.shell_layout(G) ) </span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span> <span class="n">G</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">labeldict</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">nodecolors</span><span class="p">,</span><span class="n">pos</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="p">)</span> 
+<span class="c1">#nx.draw( G,labels=labeldict, with_labels=True, node_color=nodecolors, pos=nx.fruchterman_reingold_layout(G) )</span>
+<span class="c1">#nx.draw( G,labels=labeldict, with_labels=True, node_color=nodecolors,pos=nx.spiral_layout(G) ) </span>
+
+<span class="c1">#nx.draw( G,labels=labeldict, with_labels=True, node_color=nodecolors,pos=nx.circular_layout(G)) </span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03a4569a90922c3c857f90bcae39e068c233ae00f50646fabd49a31d299d4a18.png" src="_images/03a4569a90922c3c857f90bcae39e068c233ae00f50646fabd49a31d299d4a18.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Adj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 2. 2. 1. 0. 2. 0. 1.]
+ [0. 0. 1. 0. 1. 1. 1. 0.]
+ [0. 1. 0. 0. 0. 2. 0. 0.]
+ [1. 2. 2. 0. 0. 1. 1. 1.]
+ [2. 1. 2. 2. 0. 0. 2. 1.]
+ [0. 1. 0. 1. 2. 0. 0. 0.]
+ [2. 1. 2. 1. 0. 2. 0. 1.]
+ [1. 2. 2. 1. 1. 2. 1. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nodecolors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0.25, 0.42857142857142855, 0.5), (0.25, 0.7142857142857143, 0.5), (0.25, 0.7857142857142857, 0.5), (0.25, 0.42857142857142855, 0.5), (0.25, 0.2857142857142857, 0.5), (0.25, 0.7142857142857143, 0.5), (0.25, 0.35714285714285715, 0.5), (0.25, 0.2857142857142857, 0.5)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="massey.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Predict last two games?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="B1G2016CBB.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2016 Big Ten CBB</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tournament-matrix-analysis">Tournament matrix analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-rating">Spectral rating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elo-rating">Elo rating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colley">Colley</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#massey">Massey</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#draw-graph-using-networkx">Draw graph using networkx?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

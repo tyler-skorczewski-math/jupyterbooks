@@ -1,0 +1,974 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Dimensional Analysis and Regression &#8212; MSCS 351 Jupyter notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'DimensionalAnalysis_Regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Nonlinear Regression" href="nonlinear_regression.html" />
+    <link rel="prev" title="2016 Big Ten CBB" href="B1G2016CBB.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MSCS 351 Mathematical Modeling Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="seeds_solve.html">Seeds Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LP_farm.html">Family farm example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="pulpex.html">PuLP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1.html">Family farm example</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ILP_lesson.html">ILP Lesson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1_mip.html">Example 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Rating and Ranking</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="rating_ranking.html">Rating and Ranking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="massey.html">Predict last two games?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wiacwomenscbb2023.html">Rating &amp; Ranking 2023 WIAC Women’s CBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="B1G2016CBB.html">2016 Big Ten CBB</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dimensional Analysis and Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nonlinear_regression.html">Nonlinear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical Systems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_intro.html">Introduction to dynamical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_qualitative.html">Lake Eutrophication</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_3.html">Lake Eutrophication</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="SIR.html">SIR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIRgillespie.html">Stochastic model ideas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2FDimensionalAnalysis_Regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/DimensionalAnalysis_Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dimensional Analysis and Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bike-drag-data">Bike drag data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nuclear-blasts">Nuclear blasts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-file">Read in data from file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-command-polyfit-in-the-numpy-library">built in command polyfit in the numpy library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-panels">Solar panels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#river-entrainment-speeds">River entrainment speeds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sales-data">Sales data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-residuals">checking residuals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-versus-discharge-at-soos-creek">velocity versus discharge at Soos Creek</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dimensional-analysis-and-regression">
+<h1>Dimensional Analysis and Regression<a class="headerlink" href="#dimensional-analysis-and-regression" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bike-drag-data">
+<h2>Bike drag data<a class="headerlink" href="#bike-drag-data" title="Permalink to this headline">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Velocity (x10 ft/s)</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>8</p></th>
+<th class="head"><p>10</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Drag (x100 lbs)</p></td>
+<td><p>0</p></td>
+<td><p>2.90</p></td>
+<td><p>14.8</p></td>
+<td><p>39.6</p></td>
+<td><p>74.3</p></td>
+<td><p>119</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">6.</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="mf">10.</span><span class="p">])</span>
+<span class="n">drag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">14.8</span><span class="p">,</span> <span class="mf">39.6</span><span class="p">,</span> <span class="mf">74.3</span><span class="p">,</span> <span class="mf">119.</span><span class="p">])</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">vel</span><span class="o">*</span><span class="n">vel</span>
+
+<span class="n">m</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">drag</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="n">vs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">vs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span><span class="n">ds</span><span class="p">,</span><span class="s1">&#39;r:&#39;</span><span class="p">,</span><span class="n">vel</span><span class="p">,</span> <span class="n">drag</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">);</span>
+
+<span class="c1">#con = drag/vel**2</span>
+<span class="c1">#print(con)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2031239031239034 -2.347876447876449
+</pre></div>
+</div>
+<img alt="_images/5d3151ebc991a3baccd837f5edd69e8f54d864946e27d2a114ff6502e2e3aa2b.png" src="_images/5d3151ebc991a3baccd837f5edd69e8f54d864946e27d2a114ff6502e2e3aa2b.png" />
+</div>
+</div>
+<section id="nuclear-blasts">
+<h3>Nuclear blasts<a class="headerlink" href="#nuclear-blasts" title="Permalink to this headline">#</a></h3>
+<p>During World War II, the British government
+cooperated with the US on the development
+of the atomic bomb in the Manhattan project.
+G. I. Taylor, a British fluid dynamicist, was
+asked by his government to study mechanical
+ways of measuring the bomb’s yield (energy
+output).</p>
+<p>He didn’t have direct access to the development team, but he did see the images of test explosions.</p>
+<p>He used dimensional analysis to estimate how
+the radius would scale with the other physical
+variables.
+From his work in fluids, Taylor assumed
+the relevant variables would be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r\)</span>, the radius of the shock front.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span>, density of surrounding air.</p></li>
+<li><p><span class="math notranslate nohighlight">\(E\)</span>, energy released by the device.</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span>, the time at which the front reaches <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+</ul>
+<p>Assume the density of air <span class="math notranslate nohighlight">\(\rho = 1.25\)</span> kg/m<span class="math notranslate nohighlight">\(^3\)</span>. Estimate the energy of a bomb using the data below. Note that 1 kiloton of TNT is about <span class="math notranslate nohighlight">\(4.2 \times 10^{12}\)</span>J.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(t\)</span></p></th>
+<th class="head"><p>0.10</p></th>
+<th class="head"><p>0.52</p></th>
+<th class="head"><p>1.08</p></th>
+<th class="head"><p>1.5</p></th>
+<th class="head"><p>1.93</p></th>
+<th class="head"><p>4.07</p></th>
+<th class="head"><p>15.0</p></th>
+<th class="head"><p>34.0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(r\)</span></p></td>
+<td><p>11.1</p></td>
+<td><p>28.2</p></td>
+<td><p>38.9</p></td>
+<td><p>44.4</p></td>
+<td><p>48.7</p></td>
+<td><p>64.3</p></td>
+<td><p>106.5</p></td>
+<td><p>145</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="trinity_snaps.jpg" src="attachment:trinity_snaps.jpg" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.10</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">1.08</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.93</span><span class="p">,</span><span class="mf">4.07</span><span class="p">,</span><span class="mf">15.0</span><span class="p">,</span><span class="mf">34.0</span><span class="p">])</span>
+<span class="n">rdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">11.1</span><span class="p">,</span><span class="mf">28.2</span><span class="p">,</span><span class="mf">38.9</span><span class="p">,</span><span class="mf">44.4</span><span class="p">,</span><span class="mf">48.7</span><span class="p">,</span><span class="mf">64.3</span><span class="p">,</span><span class="mf">106.5</span><span class="p">,</span><span class="mf">145.</span><span class="p">])</span>
+
+<span class="n">m</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">tdata</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">rdata</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tdata</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">rdata</span><span class="o">**</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55453840.10220057
+</pre></div>
+</div>
+<img alt="_images/cac56efd3ff171842e92f92d79d4d5a5e1d3ab24e62226d84a8897af5a5d1af2.png" src="_images/cac56efd3ff171842e92f92d79d4d5a5e1d3ab24e62226d84a8897af5a5d1af2.png" />
+</div>
+</div>
+</section>
+<section id="read-in-data-from-file">
+<h3>Read in data from file<a class="headerlink" href="#read-in-data-from-file" title="Permalink to this headline">#</a></h3>
+<p>There are many ways to read in a file with python. Here we’ll use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">loadtxt</a> command in the numpy library to read in data from a tensile load test that gives data relating the stress on a steel wire and its elongation (or strain). The data will be saved right to a numpy array with this function.</p>
+<ul class="simple">
+<li><p>Download the wire_stress_strain.csv file from Canvas and save it to your working directory.</p></li>
+<li><p>Open it in a text editor or MS Excel.</p></li>
+<li><p>Open the file using loadtxt.</p></li>
+<li><p>Plot the data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./wire_stress_strain.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">stressdata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">straindata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stressdata</span><span class="p">,</span><span class="n">straindata</span><span class="p">,</span><span class="s1">&#39;kD&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;stress&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;elongation&#39;</span><span class="p">);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">stressdata</span><span class="p">,</span><span class="n">straindata</span><span class="p">))</span>
+<span class="c1">#print(data)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./wire_stress_strain.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">stressdata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">straindata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\numpy\lib\npyio.py:1373,</span> in <span class="ni">loadtxt</span><span class="nt">(fname, dtype, comments, delimiter, converters, skiprows, usecols, unpack, ndmin, encoding, max_rows, quotechar, like)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1370</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">delimiter</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1371</span>     <span class="n">delimiter</span> <span class="o">=</span> <span class="n">delimiter</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1373</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">_read</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="n">comment</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="n">delimiter</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1374</span>             <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">,</span> <span class="n">skiplines</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">usecols</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1375</span>             <span class="n">unpack</span><span class="o">=</span><span class="n">unpack</span><span class="p">,</span> <span class="n">ndmin</span><span class="o">=</span><span class="n">ndmin</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1376</span>             <span class="n">max_rows</span><span class="o">=</span><span class="n">max_rows</span><span class="p">,</span> <span class="n">quote</span><span class="o">=</span><span class="n">quotechar</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1378</span> <span class="k">return</span> <span class="n">arr</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\numpy\lib\npyio.py:992,</span> in <span class="ni">_read</span><span class="nt">(fname, delimiter, comment, quote, imaginary_unit, usecols, skiplines, max_rows, converters, ndmin, unpack, dtype, encoding)</span>
+<span class="g g-Whitespace">    </span><span class="mi">990</span>     <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">992</span>     <span class="n">fh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">_datasource</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span>     <span class="k">if</span> <span class="n">encoding</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">994</span>         <span class="n">encoding</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">,</span> <span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\numpy\lib\_datasource.py:193,</span> in <span class="ni">open</span><span class="nt">(path, mode, destpath, encoding, newline)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> Open `path` with `mode` and return the file object.</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSource</span><span class="p">(</span><span class="n">destpath</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">193</span> <span class="k">return</span> <span class="n">ds</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span>
+
+<span class="nn">File ~\Anaconda3\lib\site-packages\numpy\lib\_datasource.py:533,</span> in <span class="ni">DataSource.open</span><span class="nt">(self, path, mode, encoding, newline)</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span>     <span class="k">return</span> <span class="n">_file_openers</span><span class="p">[</span><span class="n">ext</span><span class="p">](</span><span class="n">found</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span>                               <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">533</span>     <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> not found.&quot;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: ./wire_stress_strain.csv not found.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="built-in-command-polyfit-in-the-numpy-library">
+<h3>built in command polyfit in the numpy library<a class="headerlink" href="#built-in-command-polyfit-in-the-numpy-library" title="Permalink to this headline">#</a></h3>
+<p>There are many built-in commands that do linear regression. Some have more bells and whistles than others with what they report about statistics, etc., but we’ll stick with the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html">polyfit</a> command for now. We don’t need to import any new command or libraries for this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">stressdata</span><span class="p">,</span><span class="n">straindata</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">es</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">ss</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">es</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">stressdata</span><span class="p">,</span><span class="n">straindata</span><span class="p">,</span><span class="s1">&#39;kD&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;stress&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;elongation&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;E = </span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">2.2f</span><span class="si">}</span><span class="s2">s + </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s2">2.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c63a0437dc7f897cac4dc2a492e5a9a1d0e950dce93bd555f71c56e6fe00fd0f.png" src="_images/c63a0437dc7f897cac4dc2a492e5a9a1d0e950dce93bd555f71c56e6fe00fd0f.png" />
+</div>
+</div>
+</section>
+<section id="solar-panels">
+<h3>Solar panels<a class="headerlink" href="#solar-panels" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Read in the file solarpanels.csv</p></li>
+<li><p>Plot the year since 1982 versus the solar panel capacity made</p></li>
+<li><p>Is a linear trend good here? why or why not?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./solarpanels.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">yeardata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">capdata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">yeardata</span><span class="p">,</span><span class="n">capdata</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">yeardata</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">yeardata</span><span class="p">),</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">ys</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">ys</span><span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span><span class="n">cs</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">yeardata</span><span class="p">,</span><span class="n">capdata</span><span class="p">,</span><span class="s1">&#39;k.&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;capacity (mw)&#39;</span><span class="p">);</span>
+
+<span class="c1">#print(np.corrcoef(yeardata,capdata))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.063777089783338
+</pre></div>
+</div>
+<img alt="_images/d6f2e1d36596d49e888d042463138b97c50ec7f1285ee32cdcc239bb670bb5bf.png" src="_images/d6f2e1d36596d49e888d042463138b97c50ec7f1285ee32cdcc239bb670bb5bf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdata</span> <span class="o">=</span> <span class="n">yeardata</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">1982</span>
+<span class="n">logcapdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">capdata</span><span class="p">[</span><span class="mi">3</span><span class="p">:])</span>
+
+<span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">logcapdata</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">nts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">nlcs</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">nts</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nts</span><span class="p">,</span><span class="n">nlcs</span><span class="p">,</span><span class="s1">&#39;m:&#39;</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">logcapdata</span><span class="p">,</span><span class="s1">&#39;b^&#39;</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.18</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.17467024 1.18450699]
+3.2543742028896707
+</pre></div>
+</div>
+<img alt="_images/6e0d285ecd9a275a6e0bd6ba8ce0e619fab7d410a3d9370df505c3670f44a5f7.png" src="_images/6e0d285ecd9a275a6e0bd6ba8ce0e619fab7d410a3d9370df505c3670f44a5f7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">nts</span><span class="p">,</span><span class="mf">3.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">0.17</span><span class="o">*</span><span class="n">nts</span><span class="p">),</span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">capdata</span><span class="p">[</span><span class="mi">3</span><span class="p">:],</span><span class="s1">&#39;b^&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c0f846fb3ee48c38d16736695e478cf453d4fb47edc5522dd2f714bc686d25f1.png" src="_images/c0f846fb3ee48c38d16736695e478cf453d4fb47edc5522dd2f714bc686d25f1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cdata</span> <span class="o">=</span> <span class="n">capdata</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">tdata</span><span class="p">,</span><span class="n">cdata</span><span class="p">,</span><span class="s1">&#39;kd&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/53c06ab624fb543e1617af99a8cf00af6ba9fe72e7521c464c00c7394c97da65.png" src="_images/53c06ab624fb543e1617af99a8cf00af6ba9fe72e7521c464c00c7394c97da65.png" />
+</div>
+</div>
+</section>
+<section id="river-entrainment-speeds">
+<h3>River entrainment speeds<a class="headerlink" href="#river-entrainment-speeds" title="Permalink to this headline">#</a></h3>
+<p>Rivers and streams carry small solid particles of rock and mineral downhill, either suspended in the water column (“suspended load”) or bounced, rolled or slid along the river bed (“bed load”). Solid particles are classified according to their mean diameter from smallest to largest as clay, silt, sand, pebble, cobble and boulder.</p>
+<p>During low velocity flow, only very small particles (clay and silt) can be transported by the river, whereas during high velocity flow, much larger particles may be transported. There are two steps in transporting a sediment particle in suspension. First, the velocity must be high enough to entrain or lift the particle from the river bed. Entrainment velocities are usually very high for both clay sized particles (which are “sticky”) and large particles (which are heavy). Second, the velocity must be high enough to keep the particle in suspension. For very small particles, the speed necessary for a particle to remain in suspension is often lower than the entrainment velocity.</p>
+<p>The data in riverspeeds.csv show the speed necessary to carry particles in suspension, once they have been entrained.</p>
+<ul class="simple">
+<li><p>Plot the size of the entrained particle size in suspension against the river speed.</p></li>
+<li><p>Is a linear regression good here?</p></li>
+<li><p>Is an exponential fit appropriate?</p></li>
+<li><p>Plot the data on a log log scale.</p></li>
+<li><p>Fit a line to this data.</p></li>
+<li><p>What is the relationship between the variables?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./riverspeeds.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">sizedata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">speeddata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">speeddata</span><span class="p">,</span><span class="n">sizedata</span><span class="p">,</span><span class="s1">&#39;kd&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;speed&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;size&#39;</span><span class="p">);</span>
+
+<span class="n">m</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">speeddata</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">sizedata</span><span class="p">),</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8943798197966288 1.2489616192033506
+</pre></div>
+</div>
+<img alt="_images/af92ab2eec21da0b04f8abb236cf7ef40c22401b1e47da0b336352f18c37ae3e.png" src="_images/af92ab2eec21da0b04f8abb236cf7ef40c22401b1e47da0b336352f18c37ae3e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">speeddata</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">speeddata</span><span class="p">),</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">szs</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">b</span> <span class="o">*</span> <span class="n">ss</span><span class="o">**</span><span class="n">m</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span><span class="n">szs</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">speeddata</span><span class="p">,</span><span class="n">sizedata</span><span class="p">,</span><span class="s1">&#39;kd&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4beb551e262d5e2af842b717b89edf01809fcb3636f7b59b16d1087808fcac12.png" src="_images/4beb551e262d5e2af842b717b89edf01809fcb3636f7b59b16d1087808fcac12.png" />
+</div>
+</div>
+</section>
+<section id="sales-data">
+<h3>Sales data<a class="headerlink" href="#sales-data" title="Permalink to this headline">#</a></h3>
+<p>Consider a situation where we are selling widgets for price <span class="math notranslate nohighlight">\(x\)</span>. If we sell widgets for price <span class="math notranslate nohighlight">\(x\)</span> then we can make a profit <span class="math notranslate nohighlight">\(P\)</span>. If the price decreases, we can sell more, but we get less for each widget. If we raise the price, we sell less, but we get more for each widget. We have sale data below. What is the relationship between price and profit? How can we use this?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span>   <span class="mf">1.05</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span>  <span class="mf">1.15</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span>  <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span>  
+              <span class="mf">1.35</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span>  <span class="mf">1.45</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span>  <span class="mf">1.55</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span>  <span class="mf">1.65</span><span class="p">,</span>
+              <span class="mf">1.7</span><span class="p">,</span>  <span class="mf">1.75</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span>  <span class="mf">1.85</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span>  <span class="mf">1.95</span><span class="p">,</span> <span class="mf">2.</span>  <span class="p">])</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">42.26</span><span class="p">,</span> <span class="mf">47.18</span><span class="p">,</span> <span class="mf">50.58</span><span class="p">,</span> <span class="mf">54.61</span><span class="p">,</span> <span class="mf">58.76</span><span class="p">,</span> <span class="mf">61.04</span><span class="p">,</span> <span class="mf">64.46</span><span class="p">,</span>
+              <span class="mf">64.43</span><span class="p">,</span> <span class="mf">65.69</span><span class="p">,</span> <span class="mf">70.66</span><span class="p">,</span> <span class="mf">71.46</span><span class="p">,</span> <span class="mf">73.40</span><span class="p">,</span> <span class="mf">73.81</span><span class="p">,</span> <span class="mf">74.58</span><span class="p">,</span>
+              <span class="mf">73.76</span><span class="p">,</span> <span class="mf">73.32</span><span class="p">,</span> <span class="mf">76.59</span><span class="p">,</span> <span class="mf">72.82</span><span class="p">,</span> <span class="mf">71.73</span><span class="p">,</span> <span class="mf">72.04</span><span class="p">,</span> <span class="mf">70.36</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-residuals">
+<h3>checking residuals<a class="headerlink" href="#checking-residuals" title="Permalink to this headline">#</a></h3>
+<p>Calculate the residuals for a linear regression above and plot these against <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+<section id="velocity-versus-discharge-at-soos-creek">
+<h3>velocity versus discharge at Soos Creek<a class="headerlink" href="#velocity-versus-discharge-at-soos-creek" title="Permalink to this headline">#</a></h3>
+<p>The size of a stream or river at any given point along the stream can be quantified by measuring the width of the “wetted perimeter” of the channel, the mean depth of the water in the channel, and the mean speed or velocity of the stream. These three measurements can be multiplied together to calculate the stream’s discharge at a station, which is the volume of water passing by in a given amount of time. Discharge is typically measured in cubic meters or cubic feet per second, though in very low flows, gallons per minute might be used.</p>
+<p>At a remote stream gauging station, the height of the water (gage height) is measured and transmitted via satellite to a central recording facility. Empirical relationships (based on many measurements) between gage height, velocity, mean depth and mean width are used to calculate discharge. Therefore, one key task in this process is to actually measure mean velocity at various gage heights.</p>
+<p>The velocity at any point in a river is controlled by a number of factors, including the river’s slope or gradient, roughness of the channel bed, turbulence of the flow, depth of the river, etc. Typically, water moves faster away from the bed of the river, where obstacles create drag and turbulence. The highest velocity overall is usually in the deepest part of the channel, just below the surface. And therefore the deeper the water, the higher the velocity (for confined channel flow).</p>
+<p>A river accommodates increasing discharge by widening, deepening and speeding up. Naturally we would expect some sort of positive correlation between observed discharge and observed velocity. The data in the table, collected by the United States Geological Survey for Soos Creek in Washington State, shows the expected positive relationship. However, the relationship is highly non-linear. Velocity increases rapidly with increasing discharge, but then flattens out, perhaps approaching some limit.</p>
+<ul class="simple">
+<li><p>Read in the data from soos_discharge.csv.</p></li>
+<li><p>Plot the data.</p></li>
+<li><p>Use the ideas above to see if you can come up with a model that explains the relationship between the variables.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;./soos_discharge.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">veldata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">dischargedata</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">dischargedata</span><span class="p">),</span><span class="n">veldata</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">dischargedata</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">dischargedata</span><span class="p">),</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">vs</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="n">vs</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">dischargedata</span><span class="p">,</span><span class="n">veldata</span><span class="p">,</span><span class="s1">&#39;kd&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;discharge[cfs]&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity[m/s]&#39;</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 2.29452089 -2.18902833]
+</pre></div>
+</div>
+<img alt="_images/fe99c57258cc41780d4e2e0425ca0727c37ae0bab9b6022d7580d46488c75b0f.png" src="_images/fe99c57258cc41780d4e2e0425ca0727c37ae0bab9b6022d7580d46488c75b0f.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="B1G2016CBB.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2016 Big Ten CBB</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nonlinear_regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Nonlinear Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bike-drag-data">Bike drag data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nuclear-blasts">Nuclear blasts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-data-from-file">Read in data from file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-command-polyfit-in-the-numpy-library">built in command polyfit in the numpy library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-panels">Solar panels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#river-entrainment-speeds">River entrainment speeds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sales-data">Sales data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-residuals">checking residuals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-versus-discharge-at-soos-creek">velocity versus discharge at Soos Creek</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

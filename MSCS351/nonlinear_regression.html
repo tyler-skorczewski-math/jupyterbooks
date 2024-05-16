@@ -1,0 +1,922 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Nonlinear Regression &#8212; MSCS 351 Jupyter notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nonlinear_regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction to dynamical systems" href="dynamical_systems_intro.html" />
+    <link rel="prev" title="Dimensional Analysis and Regression" href="DimensionalAnalysis_Regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MSCS 351 Mathematical Modeling Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="seeds_solve.html">Seeds Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LP_farm.html">Family farm example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="pulpex.html">PuLP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1.html">Family farm example</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ILP_lesson.html">ILP Lesson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1_mip.html">Example 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Rating and Ranking</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="rating_ranking.html">Rating and Ranking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="massey.html">Predict last two games?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wiacwomenscbb2023.html">Rating &amp; Ranking 2023 WIAC Women’s CBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="B1G2016CBB.html">2016 Big Ten CBB</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DimensionalAnalysis_Regression.html">Dimensional Analysis and Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nonlinear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical Systems</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_intro.html">Introduction to dynamical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_qualitative.html">Lake Eutrophication</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_3.html">Lake Eutrophication</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="SIR.html">SIR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIRgillespie.html">Stochastic model ideas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2Fnonlinear_regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/nonlinear_regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Nonlinear Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turbo-charged-diesel-engines">Turbo charged diesel engines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-and-temperature">Time and temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ag-data">Ag data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#very-beary-berry-patches">Very beary berry patches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1">Task 1.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2">Task 2.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thm-marginal-value-theorem">Thm (Marginal Value Theorem)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3">Task 3.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-regression">
+<h1>Nonlinear Regression<a class="headerlink" href="#nonlinear-regression" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="turbo-charged-diesel-engines">
+<h2>Turbo charged diesel engines<a class="headerlink" href="#turbo-charged-diesel-engines" title="Permalink to this headline">#</a></h2>
+<p>A turbocharger in a diesel engine works so that a certain fraction f of the exhaust gases is routed through a small turbine which is directly connected to an air compressor (supercharger). Air compressors increase the pressure of the gas mixture entering the engine cylinder, resulting in more fuel (mixed with air) getting burned every cycle. The way to get a higher pressure rise in the supercharger is to let a larger fraction of the exhaust gases pass through the turbine. The theoretical maximum exhaust fraction <span class="math notranslate nohighlight">\(f\)</span> is 1 but the supercharger has practical limits on how high a pressure ratio it can create.</p>
+<p>Below is a table containing a few readings from a turbocharger unit that shows the pressure rise associated with a certain fraction number <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pressure ratio <span class="math notranslate nohighlight">\(r_p\)</span></p></th>
+<th class="head"><p>1.5</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>9</p></th>
+<th class="head"><p>10</p></th>
+<th class="head"><p>12</p></th>
+<th class="head"><p>14</p></th>
+<th class="head"><p>15</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exhaust fraction <span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td><p>0.15</p></td>
+<td><p>0.28</p></td>
+<td><p>0.46</p></td>
+<td><p>0.57</p></td>
+<td><p>0.62</p></td>
+<td><p>0.64</p></td>
+<td><p>0.68</p></td>
+<td><p>0.69</p></td>
+<td><p>0.70</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mf">7.</span><span class="p">,</span><span class="mf">9.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">12.</span><span class="p">,</span><span class="mf">14.</span><span class="p">,</span><span class="mf">15.</span><span class="p">])</span>
+<span class="n">fdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.28</span><span class="p">,</span><span class="mf">.46</span><span class="p">,</span><span class="mf">.57</span><span class="p">,</span><span class="mf">.62</span><span class="p">,</span><span class="mf">.64</span><span class="p">,</span><span class="mf">0.68</span><span class="p">,</span><span class="mf">.69</span><span class="p">,</span><span class="mf">.70</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span> <span class="n">rpdata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b89e1b599be1ce401473f9acd8139dfa591f4f26f9a42ee5a3aaae5396472211.png" src="_images/b89e1b599be1ce401473f9acd8139dfa591f4f26f9a42ee5a3aaae5396472211.png" />
+</div>
+</div>
+</section>
+<section id="to-do">
+<h2>To do<a class="headerlink" href="#to-do" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Fit with linear fit</p></li>
+<li><p>Fit with polynomial fit</p></li>
+<li><p>Fit with semilog regression - exponential fit</p></li>
+<li><p>Use scipy curve fit for exponential fit</p></li>
+<li><p>Use scipy curve fit for general power law</p></li>
+<li><p>Use scipy curve fit for <span class="math notranslate nohighlight">\(r_p = \frac{a}{b- f}\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">fs</span><span class="o">*</span><span class="n">fs</span><span class="o">*</span><span class="n">fs</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">fs</span><span class="o">*</span><span class="n">fs</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">fs</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 146.23596007 -123.99139413   38.74649186   -2.09770642]
+</pre></div>
+</div>
+<img alt="_images/ec5fd74e099dae33c526699227955ed13ef945bb533323a64d171c2a03f87e0e.png" src="_images/ec5fd74e099dae33c526699227955ed13ef945bb533323a64d171c2a03f87e0e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plt.semilogy(fdata,rpdata,&#39;ko&#39;);</span>
+
+<span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">fdata</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">rpdata</span><span class="p">),</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fs</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">fs</span> <span class="o">+</span> <span class="n">coeffs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1.8495401  -0.17548608]
+</pre></div>
+</div>
+<img alt="_images/e636bcb608ab123e03292276fff6ae9c426e998fc02e1561a3aee8e19b033dec.png" src="_images/e636bcb608ab123e03292276fff6ae9c426e998fc02e1561a3aee8e19b033dec.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#to use curve fit we need a functional form with parameters, data, and an initial guess for the parameters</span>
+
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">popt</span><span class="p">)</span>
+
+<span class="n">aopt</span><span class="p">,</span> <span class="n">bopt</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.33178209 2.33463438]
+</pre></div>
+</div>
+<img alt="_images/0195d19d791b4cc1778226e81f8e230783eb74159cd9c9dde0a6a9cf1ed9ffec.png" src="_images/0195d19d791b4cc1778226e81f8e230783eb74159cd9c9dde0a6a9cf1ed9ffec.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func2</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span><span class="mf">.8</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">popt</span><span class="p">)</span>
+
+<span class="n">aopt</span><span class="p">,</span> <span class="n">bopt</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">func2</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span><span class="n">rs</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="n">rpdata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.49861732 0.79880881]
+</pre></div>
+</div>
+<img alt="_images/e5734924230b16eade56bc01ba6c8fb79d3df5bd13f838c083f6dfba78640fd9.png" src="_images/e5734924230b16eade56bc01ba6c8fb79d3df5bd13f838c083f6dfba78640fd9.png" />
+</div>
+</div>
+<p>Practically, the supercharger cannot sustain a pressure ratio higher than 9.</p>
+<ul class="simple">
+<li><p>Plot the given data and all your fits till that pressure, and corresponding fraction f.</p></li>
+<li><p>Comment on which of these is the best fit given the practical constraints and what you see in the plots</p></li>
+</ul>
+</section>
+<section id="time-and-temperature">
+<h2>Time and temperature<a class="headerlink" href="#time-and-temperature" title="Permalink to this headline">#</a></h2>
+<p>The data file time_temp_data.csv contains temperature data in degrees Celcius for four days recorded every hour.</p>
+<ul class="simple">
+<li><p>Download this file to your working directory for this homework.</p></li>
+<li><p>Load the file into a numpy array using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">loadtxt</a> command in the numpy library.</p></li>
+<li><p>Plot the data. Make sure to label axes.</p></li>
+<li><p>Describe the pattern of the data in a text cell.</p></li>
+<li><p>Come up with a functional relationship that describes the temperature as a function of time that uses a trigonometric function. You’ll need at least three parameters.</p></li>
+<li><p>Use a text cell to describe and justify your initial guesses for these parameter values.</p></li>
+<li><p>Use the scipy curve_fit function to get parameter values.</p></li>
+<li><p>Plot your fit curve and the data together.</p></li>
+</ul>
+</section>
+<section id="ag-data">
+<h2>Ag data<a class="headerlink" href="#ag-data" title="Permalink to this headline">#</a></h2>
+<p>Below are data that show how farm yields of corn crops in bushels per acre (<span class="math notranslate nohighlight">\(Y\)</span>) change with the amount of applied nitrogen (<span class="math notranslate nohighlight">\(N\)</span>).</p>
+<ul class="simple">
+<li><p>Plot the data.</p></li>
+<li><p>Use the curve fit function to fit a function in the form <span class="math notranslate nohighlight">\(Y = \frac{A N}{B + N}\)</span>.</p></li>
+<li><p>Describe what the parameters <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are here and include their units.</p></li>
+<li><p>Use the curve fit function to fit a function in the form <span class="math notranslate nohighlight">\(Y = \frac{A}{1 + Be^{-CN}}\)</span>.</p></li>
+<li><p>Describe what the parameters <span class="math notranslate nohighlight">\(A,B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are here and include their units.</p></li>
+<li><p>Which model is better? Calculate AIC for each.</p></li>
+<li><p>AIC = Aikake information criterion</p></li>
+<li><p><span class="math notranslate nohighlight">\(AIC = n ln(RSS/n) + 2(k+1)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of data points, <span class="math notranslate nohighlight">\(k\)</span> the number of parameters, and <span class="math notranslate nohighlight">\(RSS\)</span> the residual sum of squares.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">appNdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">220.</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">Ydata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">19.3</span><span class="p">,</span><span class="mf">40.1</span><span class="p">,</span><span class="mf">61.7</span><span class="p">,</span><span class="mf">55.8</span><span class="p">,</span><span class="mf">82.4</span><span class="p">,</span><span class="mf">90.8</span><span class="p">,</span><span class="mf">89.2</span><span class="p">,</span><span class="mf">86.9</span><span class="p">,</span><span class="mf">98.6</span><span class="p">,</span><span class="mf">109.4</span><span class="p">,</span><span class="mf">90.5</span><span class="p">,</span><span class="mf">99.7</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">appNdata</span><span class="p">,</span><span class="n">Ydata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/86155980a01bd5384b7e9fefd89a10083704ad77b52f793ab7a5a1e71b589b05.png" src="_images/86155980a01bd5384b7e9fefd89a10083704ad77b52f793ab7a5a1e71b589b05.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">agfunc1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">agfunc1</span><span class="p">,</span><span class="n">appNdata</span><span class="p">,</span><span class="n">Ydata</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+
+<span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">220.</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">agfunc1</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">agfunc2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">n</span><span class="p">)))</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">agfunc2</span><span class="p">,</span><span class="n">appNdata</span><span class="p">,</span><span class="n">Ydata</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">.1</span><span class="p">))</span>
+
+<span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">,</span><span class="n">copt</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">ns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">220.</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">ys2</span> <span class="o">=</span> <span class="n">agfunc2</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">,</span><span class="n">copt</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">ns</span><span class="p">,</span><span class="n">ys2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">appNdata</span><span class="p">,</span><span class="n">Ydata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">appNdata</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(12,)
+</pre></div>
+</div>
+<img alt="_images/ac9719dda0465dc5a07194908c2b9495f9427d3ec524c5499362b362a42e8050.png" src="_images/ac9719dda0465dc5a07194908c2b9495f9427d3ec524c5499362b362a42e8050.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get residuals and AIC</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">appNdata</span><span class="p">)</span>
+
+<span class="n">f1res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">appNdata</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f1res</span><span class="p">)):</span>
+    <span class="n">f1res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ydata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">agfunc1</span><span class="p">(</span><span class="n">appNdata</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">)</span>
+<span class="n">f1rss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f1res</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f1rss</span><span class="p">)</span>  <span class="c1">#RSS Residual sum of squares</span>
+<span class="c1">#get func1 AIC   #AIC = n ln(RSS/n) + 2(k+1)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">f1aic</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">f1rss</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f1aic</span><span class="p">)</span>
+
+
+<span class="n">f2res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">appNdata</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f2res</span><span class="p">)):</span>
+    <span class="n">f2res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ydata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">agfunc2</span><span class="p">(</span><span class="n">appNdata</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">,</span><span class="n">copt</span><span class="p">)</span>
+<span class="n">f2rss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">f2res</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f2rss</span><span class="p">)</span>  <span class="c1">#RSS Residual sum of squares</span>
+<span class="c1">#get func1 AIC   #AIC = n ln(RSS/n) + 2(k+1)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">f2aic</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">f2rss</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f2aic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5362.733201202928
+79.22786879887838
+547.8169290485416
+53.85241412319845
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="very-beary-berry-patches">
+<h2>Very beary berry patches<a class="headerlink" href="#very-beary-berry-patches" title="Permalink to this headline">#</a></h2>
+<p>Consider a bear eating blackberries. The blackberries grow on bushes in patches. The more time the bear spends in a patch the more berries it can find, but it takes more time to find each berry. The bear also knows it will take some time to find and travel to the next berry patch. When should the bear leave the patch and go the next one?</p>
+<p>If the bear stays a long time at a patch, it will get the most berries from the patch, but can visit few patches each day. If the bear stays a short time at a patch, they can get the easiest berries to collect from the patch, but spends much of its time traveling to new patches.</p>
+<p>It is clear here we have some kind of optimization problem, but what is the objective function?
+The bear’s task is to eat the most berries each day so it should maximize its <strong>rate per visit</strong>, which includes the travel time between patches.</p>
+<p>The rate food is collected is given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}R(t) &amp;= \frac{\mbox{food per patch}}{\mbox{total time per patch}}\\
+&amp;= \frac{\mbox{food per patch}}{\mbox{time in patch } + \mbox{ travel time}}\\
+&amp;= \frac{F(t)}{t + \tau}\end{align*}\]</div>
+<section id="task-1">
+<h3>Task 1.<a class="headerlink" href="#task-1" title="Permalink to this headline">#</a></h3>
+<p>Assume <span class="math notranslate nohighlight">\(F(t) = \frac{t}{t + 0.5}\)</span> and <span class="math notranslate nohighlight">\(\tau = 1.\)</span> Find the optimal time to stay at the patch.</p>
+</section>
+<section id="task-2">
+<h3>Task 2.<a class="headerlink" href="#task-2" title="Permalink to this headline">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(F(t)\)</span> just be <span class="math notranslate nohighlight">\(F(t)\)</span>. What is true of the relationship between <span class="math notranslate nohighlight">\(F(t)\)</span> and <span class="math notranslate nohighlight">\(R(t)\)</span> at the critical points? What does this interpretation look like graphically?</p>
+</section>
+<section id="thm-marginal-value-theorem">
+<h3>Thm (Marginal Value Theorem)<a class="headerlink" href="#thm-marginal-value-theorem" title="Permalink to this headline">#</a></h3>
+<p>Leave when the derivative of <span class="math notranslate nohighlight">\(F\)</span>, the instantaneous rate of change, is equal to the average rate of change, <span class="math notranslate nohighlight">\(R(t)\)</span>. Leave when you can do better elsewhere.</p>
+<section id="task-3">
+<h4>Task 3.<a class="headerlink" href="#task-3" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Consider jelly beans to be berries and the bowls to be patches. Collect data on the time it takes to collect each berry from the bowl, e.g. collect berry 1 at 1.3 sec, berry 2 at 3.4 sec, etc.</p></li>
+<li><p>Enter the time and berry # data as arrays.</p></li>
+<li><p>Plot the data.</p></li>
+<li><p>Make a plot of number of candies collected vs. time and time vs. number of candies collected.</p></li>
+<li><p>Which plot more closely resembles what we used above?</p></li>
+<li><p>What properties do you see in the graph of you/your group’s data?</p></li>
+<li><p>Come up with at least three functional forms that share these properties.</p></li>
+<li><p>For each function, fit the parameters using the curve_fit function.</p></li>
+<li><p>After you’ve fit each function, perform the optimization analysis above to find the optimal time to leave the patch. Assume the travel time is the mean of the times to find berries 3, 4, and 5.</p></li>
+<li><p>Consider how your optimal time changed (or not) with each of your functional forms. Can you explain this behavior?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.57</span><span class="p">,</span><span class="mf">17.72</span><span class="p">,</span><span class="mf">21.29</span><span class="p">,</span><span class="mf">25.14</span><span class="p">,</span><span class="mf">41.97</span><span class="p">,</span><span class="mf">48.92</span><span class="p">,</span><span class="mf">51.32</span><span class="p">,</span><span class="mf">70.37</span><span class="p">,</span><span class="mf">90.76</span><span class="p">,</span><span class="mf">158.66</span><span class="p">])</span>
+<span class="n">fdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="c1">#plt.plot(tdata,fdata,&#39;kd&#39;);</span>
+
+<span class="k">def</span> <span class="nf">berryfunc1</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">t</span><span class="p">))</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">berryfunc1</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">fdata</span><span class="p">,(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+
+<span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">220.</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="n">agfunc1</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">berryfunc2</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="p">)))</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">agfunc2</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">fdata</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">.1</span><span class="p">))</span>
+
+<span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">,</span><span class="n">copt</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">220.</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">fs2</span> <span class="o">=</span> <span class="n">agfunc2</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">aopt</span><span class="p">,</span><span class="n">bopt</span><span class="p">,</span><span class="n">copt</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">ts</span><span class="p">,</span><span class="n">fs2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">tdata</span><span class="p">,</span><span class="n">fdata</span><span class="p">,</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time [sec]&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;beans&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;rational&#39;</span><span class="p">,</span><span class="s1">&#39;logistic&#39;</span><span class="p">,</span><span class="s1">&#39;data&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9b9180f395bc39718b7aa83cfae6745db09c35f140153fcd432fd11ff9c24659.png" src="_images/9b9180f395bc39718b7aa83cfae6745db09c35f140153fcd432fd11ff9c24659.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="DimensionalAnalysis_Regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dimensional Analysis and Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dynamical_systems_intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to dynamical systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turbo-charged-diesel-engines">Turbo charged diesel engines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#to-do">To do</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-and-temperature">Time and temperature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ag-data">Ag data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#very-beary-berry-patches">Very beary berry patches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1">Task 1.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2">Task 2.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thm-marginal-value-theorem">Thm (Marginal Value Theorem)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3">Task 3.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

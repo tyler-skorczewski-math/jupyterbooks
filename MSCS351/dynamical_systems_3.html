@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lake Eutrophication &#8212; MSCS 351 Jupyter notebooks</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dynamical_systems_3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SIR models" href="SIR.html" />
+    <link rel="prev" title="Lake Eutrophication" href="dynamical_systems_qualitative.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/StoutFlame.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/StoutFlame.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MSCS 351 Mathematical Modeling Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introductory exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="seeds_solve.html">Seeds Example</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Linear Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LP_farm.html">Family farm example</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="pulpex.html">PuLP Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1.html">Family farm example</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="ILP_lesson.html">ILP Lesson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulp_example1_mip.html">Example 2</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Rating and Ranking</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="rating_ranking.html">Rating and Ranking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="massey.html">Predict last two games?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wiacwomenscbb2023.html">Rating &amp; Ranking 2023 WIAC Women’s CBB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="B1G2016CBB.html">2016 Big Ten CBB</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="DimensionalAnalysis_Regression.html">Dimensional Analysis and Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nonlinear_regression.html">Nonlinear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamical Systems</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_intro.html">Introduction to dynamical systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamical_systems_qualitative.html">Lake Eutrophication</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lake Eutrophication</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="SIR.html">SIR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIRgillespie.html">Stochastic model ideas</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tyler-skorczewski-math/jupyterbooks/issues/new?title=Issue%20on%20page%20%2Fdynamical_systems_3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/dynamical_systems_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lake Eutrophication</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lake Eutrophication</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#housing-market">Housing market</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technique-tangent">Technique tangent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-eigenvectors-and-the-phase-plane">Eigenvalues, eigenvectors and the phase plane</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rabbits-and-sheep">Rabbits and sheep</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hare-and-lynx">Hare and Lynx</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drawslopefield</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">ts</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">te</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">xs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">xe</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">11</span><span class="p">):</span>
+    <span class="c1">#draw a slope field for dx/dt = f(t,x)</span>
+    <span class="c1">#use box [ts,te] x [xs,xe]</span>
+    <span class="c1">#use n points in each direction</span>
+    
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">xe</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">te</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="n">T</span><span class="p">,</span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">xs</span><span class="p">)</span>
+    
+    <span class="c1">#derivatives</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">dt</span><span class="p">,</span><span class="n">dx</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">);</span>
+    
+
+<span class="c1">#def func(t,x):</span>
+<span class="c1">#    return(x*(3-x))</span>
+<span class="c1">#</span>
+<span class="c1">#drawslopefield(func,0,5,0,4,15)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="lake-eutrophication">
+<h1>Lake Eutrophication<a class="headerlink" href="#lake-eutrophication" title="Permalink to this headline">#</a></h1>
+<p>If you visit a lot of lakes of different sizes in different parts of the world, you will see that there are two common physical states. Some lakes are relatively clean and fresh-smelling— these are called oligotrophic. In contrast, eutrophic lakes are overgrown with algae and have a rank smell. Eutrophic lakes have a phosphorus content that is many times higher than that of oligotrophic lakes. Biologists have long known that there does not appear to be a gradation of intermediate states; indeed, rapid eutrophication of formerly oligotrophic lakes is an environmental problem that can be caused by runoff of fertilizer from farms. Why there are no intermediate states, how eutrophication occurs, and the possibility of restoring a eutrophic lake are all questions that can be explored with a simple mathematical model due to a 1999 paper by Carpenter et al.
+$<span class="math notranslate nohighlight">\(\frac{dp}{dt} = b - p + r\frac{p^q}{1 + p^q}\)</span><span class="math notranslate nohighlight">\(
+This nondimensionalized model incorporates three mechanisms for change in phosphorus content in a lake on the LHS of the DE. The first term, \)</span>b<span class="math notranslate nohighlight">\(, represents the influx of phosphorus from the environment; this can include artificial sources such as farm runoff as well as natural sources such as decomposition of plants. The standard use of phosphates in laundry and dishwashing detergents was linked to lake eutrophication in the late 1960s and spawned one of the early conflicts between the environmental movement and industry. Phosphates are still used in some detergents, but smaller amounts and better treatment of wastewater have significantly reduced their contribution to eutrophication. The second term represents the combined processes of sedimentation, outflow, and absorption by plants, all of which remove phosphorus from the water. The last term represents the recycling of phosphorus from sediments. This term plays a significant role in the physical system, because the large values typical of \)</span>q<span class="math notranslate nohighlight">\( (from 2 for a cold deep lake to as much as 20 for a warm shallow lake) mean that the recycling rate is roughly \)</span>r<span class="math notranslate nohighlight">\( when \)</span>p&gt;1<span class="math notranslate nohighlight">\( and very small when \)</span>p&lt;1$. Thus, eutrophic lakes, which are high in phosphorus, have large recycling rates that keep the phosphorus concentration high; oligotrophic lakes, in contrast, have very little recycling of sedimentary phosphorus.</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(b=0.25\)</span>, <span class="math notranslate nohighlight">\(q=8, r=5\)</span>.</p></li>
+<li><p>Graph <span class="math notranslate nohighlight">\(\frac{dp}{dt}\)</span> vs <span class="math notranslate nohighlight">\(p\)</span>.</p></li>
+<li><p>Using some numerical tool, calculate any equilibrium solutions. You can use the fsolve command from the scipy library.</p></li>
+<li><p>What if <span class="math notranslate nohighlight">\(b=1\)</span>? What changes above? What does <span class="math notranslate nohighlight">\(b\)</span> do to the graph?</p></li>
+<li><p>Use the routine above to create slope fields for the cases above. What are equilibrium solutions associated with in the graphs? Which equilibrium solutions do you think are stable and unstable?</p></li>
+<li><p>Interpret each of the two pictures in the context of the problem described above. Write a short paragraph in your notes includes rough sketches of your figures that describes how the value of <span class="math notranslate nohighlight">\(b\)</span> affects the dynamics of this system.</p></li>
+<li><p>Use the solve_ivp command to generate some numerical solution curves. (Numerical solutions to IVPs are covered in more detail in MSCS 446. We’ll just be using those ideas now - not developing any algorithms.)</p></li>
+<li><p>If you are interested in this problem UW Stout has a LAKES REU related to this problem. These equations come from this paper studying Lake Mendota in Madison.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">.3</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">dpdts</span> <span class="o">=</span> <span class="n">dpdt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ps</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span><span class="n">dpdts</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;dp/dt&#39;</span><span class="p">);</span>
+
+<span class="c1">#drawslopefield(dpdt)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44b696612d4110d677f8a0d7f5b2ae128803d48343f79ab8da2b12f1317e7955.png" src="_images/44b696612d4110d677f8a0d7f5b2ae128803d48343f79ab8da2b12f1317e7955.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">def</span> <span class="nf">dpdt1</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">dpdt1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5.99999702]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#use solve_ivp to generate a solution</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="mf">.25</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">def</span> <span class="nf">dpdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">p</span><span class="o">**</span><span class="n">q</span><span class="p">))</span>
+
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">dpdt</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],[</span><span class="mf">.77</span><span class="p">],</span><span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x223fbfe0e80&gt;]
+</pre></div>
+</div>
+<img alt="_images/e0af8c5ac88a35dde84e2be75d3205378222765e64cb8099d0aa565a451dc2bd.png" src="_images/e0af8c5ac88a35dde84e2be75d3205378222765e64cb8099d0aa565a451dc2bd.png" />
+</div>
+</div>
+</section>
+<section id="housing-market">
+<h1>Housing market<a class="headerlink" href="#housing-market" title="Permalink to this headline">#</a></h1>
+<p>Consider the housing market. The market at time <span class="math notranslate nohighlight">\(t\)</span> consists of buyers <span class="math notranslate nohighlight">\(B(t)\)</span> and sellers <span class="math notranslate nohighlight">\(S(t)\)</span>.
+Let <span class="math notranslate nohighlight">\(b = B - B_0\)</span> and <span class="math notranslate nohighlight">\(s = S - S_0\)</span> where <span class="math notranslate nohighlight">\(B_0,S_0\)</span> represent a normal (or equilibrium) amount of buyers.
+We can model the dynamics of the housing market with the system below.
+$<span class="math notranslate nohighlight">\(b' = \alpha b + \beta s\)</span><span class="math notranslate nohighlight">\(
+  \)</span><span class="math notranslate nohighlight">\(s' = \gamma b + \delta s\)</span>$</p>
+  <ol type='1'>
+    <li> What does $b>0, s=0$ mean? Use common language.
+    <li> What does $s < 0$ mean? Use common language.
+    <li> What are the signs of $\alpha, \beta, \gamma, \delta$? Why? Use common language.
+    <li> Assume $\beta = \gamma = 1, \alpha = \delta = 0$. Find the eigenvalues, eigenvectors, and general solution of the system.
+    <li> Sketch a phase plane with some solution curves.
+    <li> $b=s=0$ is an equilibrium solution. Why? Use your answers above to describe the behaviors of solutions near (0,0). What is the name of this type of equilibrium?
+    <li> Now assume $\beta = 3, \gamma = 2, \alpha = -8,  \delta = -13$.
+      A solution is given by $c_1 e^{-14t}\begin{bmatrix}1\\-2\end{bmatrix} + c_2  e^{-7t}\begin{bmatrix}3\\1 \end{bmatrix}$.
+      (0,0) is still an equilibrium. What is the name of this type of equilibrium solution?
+</section>
+<section id="technique-tangent">
+<h1>Technique tangent<a class="headerlink" href="#technique-tangent" title="Permalink to this headline">#</a></h1>
+<ol class="arabic simple">
+<li><p>Solve the system</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= 4x - 2y \\ y' &amp;= 2x - y\end{align*}\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Solve the system</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= x - 2y \\ y' &amp;= 2x + y\end{align*}\]</div>
+</section>
+<section id="eigenvalues-eigenvectors-and-the-phase-plane">
+<h1>Eigenvalues, eigenvectors and the phase plane<a class="headerlink" href="#eigenvalues-eigenvectors-and-the-phase-plane" title="Permalink to this headline">#</a></h1>
+<p>For each system below. Find the eigenvalues and eigenvectors of the system. Write down a general solution and make a phase plane portrait using pplane or similar software.</p>
+<ol class="arabic">
+<li><div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= 0x + 1y\\y'&amp;= 1x + 0 y\end{align*}\]</div>
+</li>
+<li><div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= -8x + 3y\\y'&amp;= 2x -13 y\end{align*}\]</div>
+</li>
+<li><div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= 2x - y\\y'&amp;= -1x + 2y\end{align*}\]</div>
+</li>
+<li><div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= 0x - 1y\\y'&amp;= 1x + 0 y\end{align*}\]</div>
+</li>
+<li><div class="amsmath math notranslate nohighlight">
+\[\begin{align*} x' &amp;= 4x - 3y\\y'&amp;= 3x +  4y\end{align*}\]</div>
+</li>
+</ol>
+</section>
+<section id="rabbits-and-sheep">
+<h1>Rabbits and sheep<a class="headerlink" href="#rabbits-and-sheep" title="Permalink to this headline">#</a></h1>
+<p>Consider a population of rabbits, <span class="math notranslate nohighlight">\(x\)</span>, and sheep, <span class="math notranslate nohighlight">\(y\)</span>, that have dynamics shown below.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}x' &amp;= x(3-x) - 2xy \\ y' &amp;= y(2-y) - xy\end{align*}\]</div>
+<ul class="simple">
+<li><p>Describe each term in the equations above using common language.</p></li>
+<li><p>Find any equilibrium solutions.</p></li>
+<li><p>Use the solve_ivp command to find a handful of numerical solutions and plot them on one figure. Add your equilibrium solutions to this figure.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+    <span class="c1">#takes in t - independent var</span>
+    <span class="c1">#v - vector of dependent var</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dxdt</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+    <span class="n">dydt</span> <span class="o">=</span> <span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dxdt</span><span class="p">,</span><span class="n">dydt</span><span class="p">]))</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">func</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: The solver successfully reached the end of the integration interval.
+  success: True
+   status: 0
+        t: [ 0.000e+00  5.555e-02 ...  9.182e+00  1.000e+01]
+        y: [[ 2.000e+00  1.726e+00 ...  7.352e-03  3.283e-03]
+            [ 2.000e+00  1.814e+00 ...  1.986e+00  1.994e+00]]
+      sol: None
+ t_events: None
+ y_events: None
+     nfev: 86
+     njev: 0
+      nlu: 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a57411376c4eda1e306daaa7aa22f8d86e3de6f983e0a43c26e7215aaeb57029.png" src="_images/a57411376c4eda1e306daaa7aa22f8d86e3de6f983e0a43c26e7215aaeb57029.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/43bd4f61392afcf1c406215a52797b956f379f0fe447637d645c30ad0661303d.png" src="_images/43bd4f61392afcf1c406215a52797b956f379f0fe447637d645c30ad0661303d.png" />
+</div>
+</div>
+</section>
+<section id="hare-and-lynx">
+<h1>Hare and Lynx<a class="headerlink" href="#hare-and-lynx" title="Permalink to this headline">#</a></h1>
+<p>Consider a population of hare <span class="math notranslate nohighlight">\(H\)</span> and lynx <span class="math notranslate nohighlight">\(L\)</span>. In the absence of lynx, the hare population grows to a carrying capacity. In the absence of hares, the lynx population decays at a rate proportional to its size.</p>
+<p>Build and analyze a 2D system of differential equations that models this situation.</p>
+<div>
+<img src="attachment:image.png" width="300"/>
+</div></section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dynamical_systems_qualitative.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lake Eutrophication</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="SIR.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SIR models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lake Eutrophication</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#housing-market">Housing market</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#technique-tangent">Technique tangent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-eigenvectors-and-the-phase-plane">Eigenvalues, eigenvectors and the phase plane</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rabbits-and-sheep">Rabbits and sheep</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hare-and-lynx">Hare and Lynx</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tyler Skorczewski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
